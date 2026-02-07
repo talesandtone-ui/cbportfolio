@@ -1,12 +1,12 @@
 const ClientLogos = () => {
   // Client logos (placed in public/images/clients/)
   const clients = [
-    { name: 'TechStartup Co.', file: 'techstartup-co.svg' },
-    { name: 'Creator Studio', file: 'creator-studio.svg' },
-    { name: 'E-commerce Brand', file: 'ecommerce-brand.svg' },
-    { name: 'Restaurant Chain', file: 'restaurant-chain.svg' },
-    { name: 'SaaS Startup', file: 'saas-startup.svg' },
-    { name: 'Production House', file: 'production-house.svg' },
+    { name: 'Omkar Enterprise', file: 'techstartup-co.svg' },
+    { name: 'Priya Creates', file: 'creator-studio.svg' },
+    { name: 'Urban Store', file: 'ecommerce-brand.svg' },
+    { name: 'Spice Hub', file: 'restaurant-chain.svg' },
+    { name: 'QuickFlow App', file: 'saas-startup.svg' },
+    { name: 'Vision Media', file: 'production-house.svg' },
     { name: 'Local Business', file: 'local-business.svg' },
     { name: 'Digital Agency', file: 'digital-agency.svg' },
   ]

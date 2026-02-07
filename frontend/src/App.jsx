@@ -14,6 +14,8 @@ import Terms from './pages/Terms'
 import Privacy from './pages/Privacy'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
+import ClientLogin from './pages/ClientLogin'
+import ClientSignup from './pages/ClientSignup'
 import { reinitAnimations } from './utils/animations'
 
 // Component to handle route changes
@@ -33,40 +35,42 @@ function App() {
     <Router>
       <RouteHandler>
         <Routes>
-        {/* Admin Routes (no navbar/footer) */}
-        <Route path="/admin/login" element={<AdminLogin />} />
-        <Route
-          path="/admin/dashboard"
-          element={
-            <ProtectedRoute>
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-        
-        {/* Public Routes */}
-        <Route
-          path="/*"
-          element={
-            <div className="min-h-screen flex flex-col">
-              <Navbar />
-              <main className="flex-grow">
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/services" element={<Services />} />
-                  <Route path="/portfolio" element={<Portfolio />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/pricing" element={<Pricing />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/terms" element={<Terms />} />
-                  <Route path="/privacy" element={<Privacy />} />
-                </Routes>
-              </main>
-              <Footer />
-              <WhatsAppButton />
-            </div>
-          }
-        />
+          {/* Admin Routes (no navbar/footer) */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route
+            path="/admin/dashboard"
+            element={
+              <ProtectedRoute>
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Public Routes */}
+          <Route
+            path="/*"
+            element={
+              <div className="min-h-screen flex flex-col">
+                <Navbar />
+                <main className="flex-grow">
+                  <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/services" element={<Services />} />
+                    <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/pricing" element={<Pricing />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/login" element={<ClientLogin />} />
+                    <Route path="/signup" element={<ClientSignup />} />
+                  </Routes>
+                </main>
+                <Footer />
+                <WhatsAppButton />
+              </div>
+            }
+          />
         </Routes>
       </RouteHandler>
     </Router>

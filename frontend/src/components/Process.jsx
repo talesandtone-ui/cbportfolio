@@ -6,29 +6,29 @@ const Process = () => {
     {
       number: '01',
       icon: Search,
-      title: 'Discovery & Consultation',
-      description: 'We start with a free consultation to understand your business, goals, and challenges. We analyze your current digital presence and identify opportunities.',
+      title: 'We Meet',
+      description: 'We listen to your ideas and understand what you need for your business.',
       color: 'from-blue-500 to-cyan-600'
     },
     {
       number: '02',
       icon: MessageSquare,
-      title: 'Strategy & Proposal',
-      description: 'Based on our analysis, we create a customized strategy and detailed proposal. We outline the approach, timeline, deliverables, and investment required.',
+      title: 'We Plan',
+      description: 'We create a clear plan for your project with timeline and costs.',
       color: 'from-purple-500 to-pink-600'
     },
     {
       number: '03',
       icon: Zap,
-      title: 'Execution & Development',
-      description: 'Our team gets to work! We execute the strategy, create content, develop solutions, and implement campaigns. You\'ll receive regular updates throughout.',
+      title: 'We Build',
+      description: 'Our team starts working on your project and keeps you updated.',
       color: 'from-orange-500 to-red-600'
     },
     {
       number: '04',
       icon: CheckCircle,
-      title: 'Launch & Optimize',
-      description: 'We launch your project and monitor performance closely. We continuously optimize based on data and analytics to ensure maximum ROI and results.',
+      title: 'We Launch',
+      description: 'We launch your project and help you grow your business.',
       color: 'from-green-500 to-emerald-600'
     },
   ]

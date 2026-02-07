@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, Instagram, Youtube, Linkedin, Zap } from 'lucide-react'
+import { Mail, Phone, MapPin, Instagram, Youtube, Linkedin } from 'lucide-react'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -25,22 +25,20 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
+
               <span className="text-xl font-bold font-display">Buildlabs</span>
             </div>
             <p className="text-dark-400 text-sm leading-relaxed">
               We Turn Business Into Profits. Full-service digital marketing agency helping brands grow through video, websites, and performance marketing.
             </p>
             <div className="flex space-x-4">
-              <a href="https://instagram.com/buildlabs" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://instagram.com/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://youtube.com/@buildlabs" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://youtube.com/@buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/company/buildlabs" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://linkedin.com/company/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
@@ -92,7 +90,7 @@ const Footer = () => {
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" />
-                <span className="text-dark-400 text-sm">India</span>
+                <span className="text-dark-400 text-sm">Pune, Maharashtra, India</span>
               </li>
             </ul>
           </div>
@@ -110,6 +108,9 @@ const Footer = () => {
               </Link>
               <Link to="/terms" className="text-dark-400 hover:text-primary-400 transition-colors">
                 Terms of Service
+              </Link>
+              <Link to="/admin/login" className="text-dark-400 hover:text-primary-400 transition-colors">
+                Admin
               </Link>
             </div>
           </div>

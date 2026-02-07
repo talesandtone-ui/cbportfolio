@@ -26,7 +26,7 @@ const Pricing = () => {
     {
       name: 'Growth',
       subtitle: 'For growing brands',
-      price: '₹75,000',
+      price: '₹55,000',
       period: '/month',
       description: 'Comprehensive digital solutions to scale your business',
       features: [
@@ -115,7 +115,7 @@ const Pricing = () => {
             Pricing & <span className="text-gradient bg-gradient-to-r from-primary-200 to-primary-300 bg-clip-text text-transparent">Packages</span>
           </h1>
           <p className="text-xl text-primary-100">
-            Flexible pricing plans designed to grow with your business. 
+            Flexible pricing plans designed to grow with your business.
             Choose the perfect package or customize your own.
           </p>
         </div>
@@ -128,9 +128,8 @@ const Pricing = () => {
             {plans.map((plan, index) => (
               <div
                 key={index}
-                className={`relative bg-white dark:bg-dark-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 ${
-                  plan.popular ? 'ring-2 ring-primary-500 scale-105' : ''
-                }`}
+                className={`relative bg-white dark:bg-dark-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 ${plan.popular ? 'ring-2 ring-primary-500 scale-105' : ''
+                  }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -166,11 +165,10 @@ const Pricing = () => {
 
                 <Link
                   to="/contact"
-                  className={`cta-button block w-full text-center px-6 py-3 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2 ${
-                    plan.popular
+                  className={`cta-button block w-full text-center px-6 py-3 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2 ${plan.popular
                       ? 'bg-gradient-primary text-white hover:shadow-lg'
                       : 'bg-dark-100 dark:bg-dark-700 text-dark-900 dark:text-dark-100 hover:bg-dark-200 dark:hover:bg-dark-600'
-                  }`}
+                    }`}
                 >
                   <span>Get Free Consultation</span>
                   <ArrowRight className="w-4 h-4" />
@@ -223,7 +221,7 @@ const Pricing = () => {
             Need a <span className="text-gradient">Custom Solution?</span>
           </h2>
           <p className="text-lg text-dark-600 dark:text-dark-400 mb-8">
-            Every business is unique. We offer custom project pricing tailored to your specific needs. 
+            Every business is unique. We offer custom project pricing tailored to your specific needs.
             Get in touch to discuss your requirements and receive a personalized quote.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

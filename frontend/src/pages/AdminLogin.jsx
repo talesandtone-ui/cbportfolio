@@ -42,9 +42,7 @@ const AdminLogin = () => {
         <div className="login-card bg-white dark:bg-dark-900 rounded-2xl shadow-2xl p-8">
           {/* Logo/Header */}
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center mx-auto mb-4">
-              <LogIn className="w-8 h-8 text-white" />
-            </div>
+
             <h2 className="text-3xl font-bold font-display text-dark-900 dark:text-dark-100">
               Admin Login
             </h2>

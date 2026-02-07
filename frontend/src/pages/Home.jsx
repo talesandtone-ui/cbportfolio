@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Play, CheckCircle, TrendingUp, Video, Globe, Megaphone, Users, Award, Zap } from 'lucide-react'
-import ClientLogos from '../components/ClientLogos'
+
 import Testimonials from '../components/Testimonials'
 import Process from '../components/Process'
 import { reinitAnimations } from '../utils/animations'
@@ -57,43 +57,43 @@ const Home = () => {
         }}></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
+
             <div className="hero-animate inline-flex items-center space-x-2 bg-primary-500/20 backdrop-blur-sm border border-primary-500/30 rounded-full px-4 py-2 mb-8">
-              <Zap className="w-4 h-4 text-primary-400" />
               <span className="text-sm font-medium text-primary-300">Premium Digital Marketing Agency</span>
             </div>
 
-            <h1 className="hero-animate hero-animate-delay-1 text-4xl md:text-6xl lg:text-7xl font-bold font-display mb-6 leading-tight">
+            <h1 className="hero-animate hero-animate-delay-1 text-4xl md:text-6xl font-bold font-display mb-6 leading-tight">
               We Turn <span className="text-gradient bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">Business</span> Into <span className="text-gradient bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">Profits</span>
             </h1>
 
-            <p className="hero-animate hero-animate-delay-2 text-xl md:text-2xl text-dark-300 mb-10 leading-relaxed">
+            <p className="hero-animate hero-animate-delay-2 text-xl text-dark-300 mb-10 leading-relaxed max-w-2xl mx-auto">
               Full-service digital marketing agency helping brands grow through video, websites, and performance marketing.
               <span className="block mt-2 text-lg">We help startups, creators, local businesses, and production houses scale their digital presence.</span>
             </p>
 
-            <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <Link
                 to="/contact"
-                className="cta-button group px-8 py-4 bg-gradient-primary text-white rounded-lg font-semibold text-lg hover:shadow-2xl flex items-center space-x-2"
+                className="cta-button group px-8 py-4 bg-gradient-primary text-white rounded-lg font-semibold text-lg hover:shadow-2xl flex items-center justify-center space-x-2 w-full sm:w-auto"
               >
                 <span>Get Free Consultation</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/portfolio"
-                className="cta-button group px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-lg font-semibold text-lg hover:bg-white/20 transition-all flex items-center space-x-2"
+                className="cta-button group px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-lg font-semibold text-lg hover:bg-white/20 transition-all flex items-center justify-center space-x-2 w-full sm:w-auto"
               >
                 <Play className="w-5 h-5" />
                 <span>View Our Work</span>
               </Link>
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Client Logos */}
-      <ClientLogos />
+
 
       {/* Stats Section */}
       <section className="py-16 bg-white dark:bg-dark-800">
@@ -174,33 +174,33 @@ const Home = () => {
             {[
               {
                 icon: Award,
-                title: 'Proven Track Record',
-                description: '500+ projects completed, 200+ happy clients, 98% satisfaction rate'
+                title: 'Proven Success',
+                description: '500+ happy clients and 98% satisfaction rate.'
               },
               {
                 icon: Zap,
-                title: 'Fast Turnaround',
-                description: 'Quick response times and efficient project delivery without compromising quality'
+                title: 'Fast Delivery',
+                description: 'We deliver projects on time without quality compromise.'
               },
               {
                 icon: Users,
-                title: 'Dedicated Support',
-                description: 'Dedicated account managers and 24/7 support for all your needs'
+                title: 'Full Support',
+                description: 'Dedicated managers and 24/7 support for you.'
               },
               {
                 icon: TrendingUp,
-                title: 'Results-Driven',
-                description: 'Data-backed strategies that deliver measurable ROI and growth'
+                title: 'Real Results',
+                description: 'Strategies that actually help your business grow sales.'
               },
               {
                 icon: Globe,
-                title: 'End-to-End Solutions',
-                description: 'From video editing to web development to marketing - all under one roof'
+                title: 'All-in-One Service',
+                description: 'Video to website to marketing - we handle everything.'
               },
               {
                 icon: CheckCircle,
-                title: 'Transparent Pricing',
-                description: 'No hidden costs, flexible packages, and clear communication throughout'
+                title: 'Clear Pricing',
+                description: 'No hidden costs. Simple and flexible packages.'
               },
             ].map((item, index) => (
               <div

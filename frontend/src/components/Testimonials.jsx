@@ -3,59 +3,33 @@ import { Star, Quote } from 'lucide-react'
 const Testimonials = () => {
   const testimonials = [
     {
-      name: 'Rajesh Kumar',
-      role: 'Founder, TechStartup Co.',
-      company: 'TechStartup Co.',
+      name: 'Omkar ',
+      role: 'Founder',
+      company: 'Omkar Enterprise',
       image: 'bg-gradient-to-br from-blue-500 to-cyan-600',
       rating: 5,
-      text: 'Buildlabs transformed our digital presence completely. Our website traffic increased by 300% and we saw a 45% conversion rate improvement. Highly professional team!',
-      results: '300% traffic increase, 45% conversion rate'
+      text: 'Buildlabs helped us fix our website and get more customers. Very professional team.',
+      results: '50% more visitors'
     },
     {
-      name: 'Priya Sharma',
+      name: 'Chetan ',
       role: 'Content Creator',
-      company: 'Creator Studio',
+      company: 'Chetan Flims',
       image: 'bg-gradient-to-br from-pink-500 to-rose-600',
       rating: 5,
-      text: 'Their video editing is top-notch! My YouTube channel grew from 10K to 100K subscribers in just 6 months. The quality of work is exceptional and they always deliver on time.',
-      results: '10K to 100K subscribers in 6 months'
+      text: 'They edit my videos perfectly and on time. My channel is growing much better now.',
+      results: '10K to 50K subs'
     },
     {
       name: 'Amit Patel',
-      role: 'Marketing Director',
-      company: 'E-commerce Brand',
+      role: 'Marketing Head',
+      company: 'Yum Yum',
       image: 'bg-gradient-to-br from-green-500 to-emerald-600',
       rating: 5,
-      text: 'Best digital marketing agency we\'ve worked with. Their performance marketing campaigns generated ₹75L+ in revenue. ROI was outstanding and they provided detailed analytics.',
-      results: '₹75L+ revenue generated'
+      text: 'Good digital marketing service. We are seeing better sales for our products.',
+      results: '20% sales boost'
     },
-    {
-      name: 'Sneha Reddy',
-      role: 'Business Owner',
-      company: 'Local Restaurant Chain',
-      image: 'bg-gradient-to-br from-orange-500 to-amber-600',
-      rating: 5,
-      text: 'Buildlabs helped us rebrand completely and launch our digital marketing. Our online orders increased by 250% and brand awareness skyrocketed. Worth every rupee!',
-      results: '250% increase in online orders'
-    },
-    {
-      name: 'Vikram Singh',
-      role: 'CEO',
-      company: 'SaaS Startup',
-      image: 'bg-gradient-to-br from-purple-500 to-indigo-600',
-      rating: 5,
-      text: 'Their lead generation funnels are incredible. We went from struggling to get leads to generating 3,500+ qualified leads with a 52% conversion rate. Game changer!',
-      results: '3,500+ leads, 52% conversion rate'
-    },
-    {
-      name: 'Anjali Mehta',
-      role: 'Creative Director',
-      company: 'Production House',
-      image: 'bg-gradient-to-br from-teal-500 to-cyan-600',
-      rating: 5,
-      text: 'Professional video production and branding services. They understand creative vision and execute flawlessly. Our client satisfaction has never been higher.',
-      results: '98% client satisfaction'
-    },
+
   ]
 
   return (

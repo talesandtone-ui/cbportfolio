@@ -1,73 +1,72 @@
-// JWT Authentication Service
-// In production, this would connect to a real backend API
-
-const TOKEN_KEY = 'admin_token'
-const ADMIN_CREDENTIALS = {
-  email: 'admin@buildlabs.in',
-  password: 'admin123' // Change this in production!
-}
-
-// Simple JWT-like token generation (for demo purposes)
-// In production, use a proper JWT library or backend API
-const generateToken = (email) => {
-  const payload = {
-    email,
-    role: 'admin',
-    iat: Date.now(),
-    exp: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
-  }
-  // Simple base64 encoding (not secure, use proper JWT in production)
-  return btoa(JSON.stringify(payload))
-}
-
-const decodeToken = (token) => {
-  try {
-    const payload = JSON.parse(atob(token))
-    // Check if token is expired
-    if (payload.exp && payload.exp < Date.now()) {
-      return null
-    }
-    return payload
-  } catch (error) {
-    return null
-  }
-}
+const API_URL = '/api/auth';
 
 export const authService = {
   login: async (email, password) => {
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 500))
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
-      const token = generateToken(email)
-      localStorage.setItem(TOKEN_KEY, token)
-      return { success: true, token }
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        return { success: true, token: data.token, user: data.user };
+      } else {
+        return { success: false, error: data.error };
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      return { success: false, error: 'Server error' };
     }
-    return { success: false, error: 'Invalid email or password' }
+  },
+
+  register: async (name, email, password) => {
+    try {
+      const response = await fetch(`${API_URL}/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user', JSON.stringify(data.user));
+        return { success: true, token: data.token, user: data.user };
+      } else {
+        return { success: false, error: data.error };
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      return { success: false, error: 'Server error' };
+    }
   },
 
   logout: () => {
-    localStorage.removeItem(TOKEN_KEY)
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
   },
 
   getToken: () => {
-    return localStorage.getItem(TOKEN_KEY)
-  },
-
-  isAuthenticated: () => {
-    const token = localStorage.getItem(TOKEN_KEY)
-    if (!token) return false
-
-    const payload = decodeToken(token)
-    return payload !== null
+    return localStorage.getItem('token');
   },
 
   getCurrentUser: () => {
-    const token = localStorage.getItem(TOKEN_KEY)
-    if (!token) return null
+    const userStr = localStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
+  },
 
-    const payload = decodeToken(token)
-    return payload
+  isAuthenticated: () => {
+    const token = localStorage.getItem('token');
+    return !!token;
   }
-}
-
+};

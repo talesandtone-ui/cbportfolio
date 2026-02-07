@@ -11,100 +11,53 @@ const Portfolio = () => {
   const caseStudies = [
     {
       id: 1,
-      client: 'TechStartup Co.',
+      client: 'Taste Fusion',
       category: 'Web Development + Marketing',
       problem: 'Low website conversion rate and minimal online presence',
       strategy: 'Complete website redesign with conversion-focused landing pages and performance marketing campaigns',
       services: ['Website Development', 'SEO Optimization', 'Performance Marketing', 'Landing Pages'],
       results: {
-        views: '250K+',
-        leads: '1,200+',
-        conversions: '45%',
-        revenue: '₹50L+'
+        views: '1500K+',
+        leads: '1120+',
+        conversions: '15%',
+        revenue: '₹2L+'
       },
       image: 'bg-gradient-to-br from-blue-500 to-purple-600',
       icon: Globe
     },
     {
       id: 2,
-      client: 'Creator Studio',
+      client: 'Omkar Enterprise',
+      category: 'Web Development + Marketing',
+      problem: 'Low website conversion rate and minimal online presence',
+      strategy: 'Complete website redesign with conversion-focused landing pages and performance marketing campaigns',
+      services: ['Website Development', 'SEO Optimization', 'Performance Marketing', 'Landing Pages'],
+      results: {
+        views: '25K+',
+        leads: '120+',
+        conversions: '15%',
+        revenue: '₹L+'
+      },
+      image: 'bg-gradient-to-br from-blue-500 to-purple-600',
+      icon: Globe
+    },
+    {
+      id: 3,
+      client: 'Chetu Flims',
       category: 'Video Editing + Social Media',
       problem: 'Inconsistent content quality and low engagement rates',
       strategy: 'Professional video editing pipeline and strategic social media management',
       services: ['Video Editing', 'Motion Graphics', 'Social Media Management', 'Content Strategy'],
       results: {
-        views: '5M+',
-        leads: '8,500+',
+        views: '50K+',
+        leads: '200+',
         conversions: '12%',
-        revenue: '₹30L+'
+        revenue: '₹2L+'
       },
       image: 'bg-gradient-to-br from-red-500 to-pink-600',
       icon: Video
     },
-    {
-      id: 3,
-      client: 'Local Restaurant Chain',
-      category: 'Branding + Digital Marketing',
-      problem: 'Outdated brand identity and limited digital reach',
-      strategy: 'Complete brand refresh and comprehensive digital marketing campaign',
-      services: ['Brand Identity', 'Social Media Management', 'Performance Marketing', 'Content Production'],
-      results: {
-        views: '180K+',
-        leads: '950+',
-        conversions: '28%',
-        revenue: '₹25L+'
-      },
-      image: 'bg-gradient-to-br from-orange-500 to-yellow-600',
-      icon: Megaphone
-    },
-    {
-      id: 4,
-      client: 'E-commerce Brand',
-      category: 'Web Development + Performance Marketing',
-      problem: 'Poor website performance and low ad ROI',
-      strategy: 'E-commerce platform optimization and data-driven ad campaigns',
-      services: ['Website Development', 'Performance Marketing', 'Conversion Optimization', 'Analytics'],
-      results: {
-        views: '420K+',
-        leads: '2,100+',
-        conversions: '38%',
-        revenue: '₹75L+'
-      },
-      image: 'bg-gradient-to-br from-green-500 to-teal-600',
-      icon: Zap
-    },
-    {
-      id: 5,
-      client: 'Production House',
-      category: 'Video Production + Branding',
-      problem: 'Need for high-quality video content and cohesive brand presence',
-      strategy: 'Cinematic video production and comprehensive brand identity system',
-      services: ['Video Editing', 'Motion Graphics', 'Brand Identity', 'Content Production'],
-      results: {
-        views: '3.2M+',
-        leads: '5,800+',
-        conversions: '18%',
-        revenue: '₹40L+'
-      },
-      image: 'bg-gradient-to-br from-purple-500 to-indigo-600',
-      icon: Video
-    },
-    {
-      id: 6,
-      client: 'SaaS Startup',
-      category: 'Web Development + Lead Generation',
-      problem: 'Low lead generation and poor conversion funnel',
-      strategy: 'Optimized landing pages and automated lead generation funnels',
-      services: ['Website Development', 'Lead Generation Funnels', 'Marketing Automation', 'Analytics'],
-      results: {
-        views: '320K+',
-        leads: '3,500+',
-        conversions: '52%',
-        revenue: '₹60L+'
-      },
-      image: 'bg-gradient-to-br from-cyan-500 to-blue-600',
-      icon: Globe
-    },
+
   ]
 
   return (
