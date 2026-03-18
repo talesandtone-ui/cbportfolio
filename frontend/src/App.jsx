@@ -14,8 +14,7 @@ import Terms from './pages/Terms'
 import Privacy from './pages/Privacy'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
-import ClientLogin from './pages/ClientLogin'
-import ClientSignup from './pages/ClientSignup'
+// Login/Signup pages removed — only contact form is used
 import { reinitAnimations } from './utils/animations'
 
 // Component to handle route changes
@@ -62,8 +61,7 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
-                    <Route path="/login" element={<ClientLogin />} />
-                    <Route path="/signup" element={<ClientSignup />} />
+
                   </Routes>
                 </main>
                 <Footer />

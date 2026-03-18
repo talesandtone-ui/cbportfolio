@@ -19,26 +19,29 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-dark-900 text-dark-50">
+    <footer className="bg-dark-950 text-dark-300 border-t border-primary-700/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-
-              <span className="text-xl font-bold font-display">Buildlabs</span>
+              <img
+                src="/images/clients/logo.png"
+                alt="Buildlabs Digital"
+                className="h-16 md:h-20 w-auto object-contain"
+              />
             </div>
-            <p className="text-dark-400 text-sm leading-relaxed">
-              We Turn Business Into Profits. Full-service digital marketing agency helping brands grow through video, websites, and performance marketing.
+            <p className="text-dark-500 text-sm leading-relaxed">
+              We Help Your Business Grow. We help you get more customers with great videos, clean websites, and smart marketing.
             </p>
             <div className="flex space-x-4">
-              <a href="https://instagram.com/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://instagram.com/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://youtube.com/@buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://youtube.com/@buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/company/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 flex items-center justify-center hover:bg-primary-600 transition-colors">
+              <a href="https://linkedin.com/company/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
@@ -46,7 +49,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4 text-primary-500">Services</h3>
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service.name}>
@@ -60,7 +63,7 @@ const Footer = () => {
 
           {/* Company */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <h3 className="text-lg font-semibold mb-4 text-primary-500">Company</h3>
             <ul className="space-y-2">
               {company.map((item) => (
                 <li key={item.name}>
@@ -74,22 +77,24 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Get In Touch</h3>
+            <h3 className="text-lg font-semibold mb-4 text-primary-500">Get In Touch</h3>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
-                <Mail className="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" />
+                <Mail className="w-5 h-5 text-primary-500 mt-0.5 flex-shrink-0" />
                 <a href="mailto:hello@buildlabs.in" className="text-dark-400 hover:text-primary-400 text-sm transition-colors">
                   hello@buildlabs.in
                 </a>
               </li>
               <li className="flex items-start space-x-3">
-                <Phone className="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" />
-                <a href="tel:+918237513033" className="text-dark-400 hover:text-primary-400 text-sm transition-colors">
-                  +918237513033
-                </a>
+                <Phone className="w-5 h-5 text-primary-500 mt-0.5 flex-shrink-0" />
+                <div className="flex flex-col">
+                  <a href="tel:+918237513033" className="text-dark-400 hover:text-primary-400 text-sm transition-colors">
+                    +91 82375 13033
+                  </a>
+                </div>
               </li>
               <li className="flex items-start space-x-3">
-                <MapPin className="w-5 h-5 text-primary-400 mt-0.5 flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-primary-500 mt-0.5 flex-shrink-0" />
                 <span className="text-dark-400 text-sm">Pune, Maharashtra, India</span>
               </li>
             </ul>
@@ -98,18 +103,18 @@ const Footer = () => {
 
         <div className="border-t border-dark-800 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-dark-400 text-sm">
+            <p className="text-dark-500 text-sm">
               © {currentYear} Buildlabs. All rights reserved.
               made with ❤️
             </p>
             <div className="flex space-x-6 text-sm">
-              <Link to="/privacy" className="text-dark-400 hover:text-primary-400 transition-colors">
+              <Link to="/privacy" className="text-dark-500 hover:text-primary-400 transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-dark-400 hover:text-primary-400 transition-colors">
+              <Link to="/terms" className="text-dark-500 hover:text-primary-400 transition-colors">
                 Terms of Service
               </Link>
-              <Link to="/admin/login" className="text-dark-400 hover:text-primary-400 transition-colors">
+              <Link to="/admin/login" className="text-dark-500 hover:text-primary-400 transition-colors">
                 Admin
               </Link>
             </div>
@@ -121,4 +126,3 @@ const Footer = () => {
 }
 
 export default Footer
-

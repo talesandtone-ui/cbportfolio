@@ -16,19 +16,19 @@ const Home = () => {
       icon: Video,
       title: 'Video Editing',
       description: 'Reels, YouTube, Ads, Cinematic edits that captivate audiences',
-      color: 'from-red-500 to-pink-600'
+      color: 'from-primary-500 to-primary-700'
     },
     {
       icon: Globe,
       title: 'Web Development',
       description: 'Modern, responsive websites that convert visitors into customers',
-      color: 'from-blue-500 to-cyan-600'
+      color: 'from-primary-400 to-primary-600'
     },
     {
       icon: Megaphone,
       title: 'Digital Marketing',
-      description: 'Performance-driven campaigns that scale your business',
-      color: 'from-purple-500 to-indigo-600'
+      description: 'Marketing that brings you more sales',
+      color: 'from-primary-600 to-primary-800'
     },
   ]
 
@@ -39,50 +39,41 @@ const Home = () => {
     { number: '3+', label: 'Years Experience' },
   ]
 
-  const features = [
-    'End-to-end digital solutions',
-    'Results-driven strategies',
-    'Modern & creative approach',
-    'Dedicated account managers',
-    'Real-time analytics & reporting',
-    '24/7 support & maintenance'
-  ]
-
   return (
     <div className="pt-16 md:pt-20">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-white">
-        <div className="absolute inset-0 opacity-20" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+      <section className="relative overflow-hidden bg-dark-950 text-white">
+        {/* Animated gold glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-500/8 rounded-full blur-[150px]"></div>
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-600/5 rounded-full blur-[120px]"></div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36">
           <div className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto">
 
-            <div className="hero-animate inline-flex items-center space-x-2 bg-primary-500/20 backdrop-blur-sm border border-primary-500/30 rounded-full px-4 py-2 mb-8">
-              <span className="text-sm font-medium text-primary-300">Premium Digital Marketing Agency</span>
+            <div className="hero-animate inline-flex items-center space-x-2 bg-primary-500/10 border border-primary-500/25 rounded-full px-5 py-2 mb-8">
+              <span className="text-sm font-medium text-primary-400">🚀 Your Digital Growth Partner</span>
             </div>
 
-            <h1 className="hero-animate hero-animate-delay-1 text-4xl md:text-6xl font-bold font-display mb-6 leading-tight">
-              We Turn <span className="text-gradient bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">Business</span> Into <span className="text-gradient bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent">Profits</span>
+            <h1 className="hero-animate hero-animate-delay-1 text-4xl md:text-6xl lg:text-7xl font-bold font-display mb-6 leading-tight text-white">
+              We Help Your <span className="text-gradient">Business</span> Grow
             </h1>
 
-            <p className="hero-animate hero-animate-delay-2 text-xl text-dark-300 mb-10 leading-relaxed max-w-2xl mx-auto">
-              Full-service digital marketing agency helping brands grow through video, websites, and performance marketing.
-              <span className="block mt-2 text-lg">We help startups, creators, local businesses, and production houses scale their digital presence.</span>
+            <p className="hero-animate hero-animate-delay-2 text-xl text-dark-400 mb-10 leading-relaxed max-w-2xl mx-auto">
+              We help you get more customers with great videos, clean websites, and smart marketing.
+              <span className="block mt-2 text-lg text-dark-500">We help startups, creators, local businesses, and production houses scale their digital presence.</span>
             </p>
 
             <div className="hero-animate hero-animate-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
               <Link
                 to="/contact"
-                className="cta-button group px-8 py-4 bg-gradient-primary text-white rounded-lg font-semibold text-lg hover:shadow-2xl flex items-center justify-center space-x-2 w-full sm:w-auto"
+                className="cta-button group px-8 py-4 bg-gradient-primary text-dark-950 rounded-lg font-semibold text-lg hover:shadow-2xl hover:shadow-primary-500/25 flex items-center justify-center space-x-2 w-full sm:w-auto"
               >
                 <span>Get Free Consultation</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/portfolio"
-                className="cta-button group px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-lg font-semibold text-lg hover:bg-white/20 transition-all flex items-center justify-center space-x-2 w-full sm:w-auto"
+                className="cta-button group px-8 py-4 bg-dark-800 border border-primary-500/20 text-primary-400 rounded-lg font-semibold text-lg hover:border-primary-500/40 hover:bg-dark-800/80 transition-all flex items-center justify-center space-x-2 w-full sm:w-auto"
               >
                 <Play className="w-5 h-5" />
                 <span>View Our Work</span>
@@ -93,16 +84,14 @@ const Home = () => {
         </div>
       </section>
 
-
-
       {/* Stats Section */}
-      <section className="py-16 bg-white dark:bg-dark-800">
+      <section className="py-16 bg-dark-900 border-y border-primary-700/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="scroll-reveal text-center">
-                <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">{stat.number}</div>
-                <div className="text-dark-600 dark:text-dark-400 font-medium">{stat.label}</div>
+                <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">{stat.number}</div>
+                <div className="text-dark-400 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -110,14 +99,14 @@ const Home = () => {
       </section>
 
       {/* Services Preview */}
-      <section className="py-20 bg-dark-50 dark:bg-dark-900">
+      <section className="py-20 bg-dark-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16 scroll-reveal">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
               Our <span className="text-gradient">Services</span>
             </h2>
-            <p className="text-lg text-dark-600 dark:text-dark-400 max-w-2xl mx-auto">
-              End-to-end digital solutions tailored to your business needs
+            <p className="text-lg text-dark-400 max-w-2xl mx-auto">
+              Complete digital services for your business
             </p>
           </div>
 
@@ -125,16 +114,16 @@ const Home = () => {
             {services.map((service, index) => (
               <div
                 key={index}
-                className="service-card scroll-reveal-stagger group relative bg-white dark:bg-dark-800 rounded-2xl p-8 shadow-lg"
+                className="service-card scroll-reveal-stagger group relative bg-dark-900 border border-dark-700/50 rounded-2xl p-8 hover:border-primary-500/30"
               >
                 <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <service.icon className="w-8 h-8 text-white" />
+                  <service.icon className="w-8 h-8 text-dark-950" />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-3">{service.title}</h3>
-                <p className="text-dark-600 dark:text-dark-400 mb-6">{service.description}</p>
+                <h3 className="text-xl font-bold font-display mb-3 text-white">{service.title}</h3>
+                <p className="text-dark-400 mb-6">{service.description}</p>
                 <Link
                   to="/services"
-                  className="inline-flex items-center text-primary-600 dark:text-primary-400 font-semibold group-hover:gap-2 transition-all"
+                  className="inline-flex items-center text-primary-500 font-semibold group-hover:gap-2 transition-all"
                 >
                   Learn More
                   <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -146,7 +135,7 @@ const Home = () => {
           <div className="text-center mt-12">
             <Link
               to="/services"
-              className="inline-flex items-center px-6 py-3 bg-gradient-primary text-white rounded-lg font-semibold hover:shadow-lg transform hover:scale-105 transition-all"
+              className="inline-flex items-center px-6 py-3 bg-gradient-primary text-dark-950 rounded-lg font-semibold hover:shadow-lg hover:shadow-primary-500/20 transform hover:scale-105 transition-all"
             >
               View All Services
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -159,13 +148,13 @@ const Home = () => {
       <Process />
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-dark-50 dark:bg-dark-800">
+      <section className="py-20 bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 scroll-reveal">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
               Why Choose <span className="text-gradient">Buildlabs?</span>
             </h2>
-            <p className="text-lg text-dark-600 dark:text-dark-400 max-w-2xl mx-auto">
+            <p className="text-lg text-dark-400 max-w-2xl mx-auto">
               We combine creativity with data-driven strategies to deliver results that matter
             </p>
           </div>
@@ -205,13 +194,13 @@ const Home = () => {
             ].map((item, index) => (
               <div
                 key={index}
-                className="service-card scroll-reveal-stagger bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg"
+                className="service-card scroll-reveal-stagger bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors"
               >
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
-                  <item.icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-primary-500/15 rounded-lg flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-2">{item.title}</h3>
-                <p className="text-dark-600 dark:text-dark-400 text-sm">{item.description}</p>
+                <h3 className="text-xl font-bold font-display mb-2 text-white">{item.title}</h3>
+                <p className="text-dark-400 text-sm">{item.description}</p>
               </div>
             ))}
           </div>
@@ -219,7 +208,7 @@ const Home = () => {
           <div className="text-center mt-12 scroll-reveal">
             <Link
               to="/contact"
-              className="cta-button inline-flex items-center px-8 py-4 bg-gradient-primary text-white rounded-lg font-semibold text-lg hover:shadow-2xl"
+              className="cta-button inline-flex items-center px-8 py-4 bg-gradient-primary text-dark-950 rounded-lg font-semibold text-lg hover:shadow-2xl hover:shadow-primary-500/25"
             >
               Get Free Consultation
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -232,20 +221,24 @@ const Home = () => {
       <Testimonials />
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-primary-600 to-primary-800 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="py-20 bg-gradient-to-br from-primary-700 via-primary-600 to-primary-800 text-dark-950 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary-400/30 rounded-full blur-[100px]"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary-300/20 rounded-full blur-[80px]"></div>
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="scroll-reveal">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-dark-950">
               Ready to Scale Your Digital Presence?
             </h2>
-            <p className="text-xl text-primary-100 mb-8">
+            <p className="text-xl text-dark-800 mb-8">
               Get a free consultation and discover how we can help turn your business into profits.
             </p>
           </div>
           <div className="scroll-reveal flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="cta-button px-8 py-4 bg-white text-primary-600 rounded-lg font-semibold text-lg hover:shadow-2xl flex items-center space-x-2"
+              className="cta-button px-8 py-4 bg-dark-950 text-primary-500 rounded-lg font-semibold text-lg hover:shadow-2xl flex items-center space-x-2"
             >
               <span>Get Free Consultation</span>
               <ArrowRight className="w-5 h-5" />
@@ -254,7 +247,7 @@ const Home = () => {
               href="https://wa.me/918237513033"
               target="_blank"
               rel="noopener noreferrer"
-              className="cta-button px-8 py-4 bg-primary-700 border-2 border-white/30 text-white rounded-lg font-semibold text-lg hover:bg-primary-800 transition-all flex items-center space-x-2"
+              className="cta-button px-8 py-4 bg-dark-950/20 border-2 border-dark-950/30 text-dark-950 rounded-lg font-semibold text-lg hover:bg-dark-950/30 transition-all flex items-center space-x-2"
             >
               <span>Chat on WhatsApp</span>
             </a>
@@ -266,4 +259,3 @@ const Home = () => {
 }
 
 export default Home
-

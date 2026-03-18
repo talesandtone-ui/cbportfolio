@@ -1,49 +1,30 @@
-import { authService } from './auth';
-
-const API_URL = '/api/admin';
+import { db } from '../config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 export const getAdminStats = async () => {
     try {
-        const token = authService.getToken();
-        const response = await fetch(`${API_URL}/stats`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        return data.success ? data.data : null;
+        const leadsSnap = await getDocs(collection(db, 'leads'));
+        const usersSnap = await getDocs(collection(db, 'users'));
+        return {
+            totalLeads: leadsSnap.size,
+            totalUsers: usersSnap.size,
+            totalOrders: 0,
+            revenue: 0,
+        };
     } catch (error) {
         console.error('Error fetching admin stats:', error);
-        return null;
+        return { totalLeads: 0, totalUsers: 0, totalOrders: 0, revenue: 0 };
     }
 };
 
 export const getActivityLogs = async () => {
-    try {
-        const token = authService.getToken();
-        const response = await fetch(`${API_URL}/activity`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        return data.success ? data.data : [];
-    } catch (error) {
-        console.error('Error fetching activity logs:', error);
-        return [];
-    }
+    return []; // Mock logs for now
 };
 
 export const getUsers = async () => {
     try {
-        const token = authService.getToken();
-        const response = await fetch(`${API_URL}/users`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        return data.success ? data.data : [];
+        const usersSnap = await getDocs(collection(db, 'users'));
+        return usersSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
         console.error('Error fetching users:', error);
         return [];
@@ -51,17 +32,5 @@ export const getUsers = async () => {
 };
 
 export const getOrders = async () => {
-    try {
-        const token = authService.getToken();
-        const response = await fetch(`${API_URL}/orders`, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-        const data = await response.json();
-        return data.success ? data.data : [];
-    } catch (error) {
-        console.error('Error fetching orders:', error);
-        return [];
-    }
+    return []; // Mock orders for now
 };

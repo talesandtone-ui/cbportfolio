@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom'
-import { authService } from '../services/auth'
+import { firebaseAuthService } from '../services/firebaseAuth'
 
 const ProtectedRoute = ({ children }) => {
-  const isAuthenticated = authService.isAuthenticated()
+  const isAuthenticated = firebaseAuthService.isAuthenticated()
 
   if (!isAuthenticated) {
     return <Navigate to="/admin/login" replace />

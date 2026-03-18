@@ -1,18 +1,16 @@
 // Email Notification Service
 // In production, integrate with EmailJS, SendGrid, AWS SES, or your backend API
 
-const ADMIN_EMAIL = 'admin@buildlabs.in' // Change to your admin email
+const ADMIN_EMAIL = 'ganeshbhadane7781@gmail.com' // Set to the email where notifications should be received
 
-// EmailJS configuration (optional - uncomment and configure if using EmailJS)
-// import emailjs from '@emailjs/browser'
+// EmailJS configuration
+import emailjs from '@emailjs/browser'
 
 export const emailService = {
   // Send email notification to admin when a new lead is submitted
   sendLeadNotification: async (leadData) => {
     try {
       // Option 1: Use EmailJS (requires setup)
-      // Uncomment and configure if using EmailJS:
-      /*
       const templateParams = {
         to_email: ADMIN_EMAIL,
         lead_name: leadData.name,
@@ -26,12 +24,11 @@ export const emailService = {
       }
       
       await emailjs.send(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
+        'service_fpkhjw7',
+        'template_wlr0uaj', 
         templateParams,
-        'YOUR_PUBLIC_KEY'
+        'dPzZMZRMv7_2nEcEE' 
       )
-      */
 
       // Option 2: Use your backend API
       // Uncomment and configure if you have a backend:

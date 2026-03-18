@@ -21,7 +21,6 @@ const Pricing = () => {
       cta: 'Get Started',
       popular: false,
       icon: Zap,
-      color: 'from-blue-500 to-cyan-600'
     },
     {
       name: 'Growth',
@@ -44,7 +43,6 @@ const Pricing = () => {
       cta: 'Get Started',
       popular: true,
       icon: TrendingUp,
-      color: 'from-purple-500 to-indigo-600'
     },
     {
       name: 'Premium',
@@ -69,7 +67,6 @@ const Pricing = () => {
       cta: 'Contact Us',
       popular: false,
       icon: Crown,
-      color: 'from-yellow-500 to-orange-600'
     },
   ]
 
@@ -109,12 +106,13 @@ const Pricing = () => {
   return (
     <div className="pt-16 md:pt-20">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-display mb-6">
-            Pricing & <span className="text-gradient bg-gradient-to-r from-primary-200 to-primary-300 bg-clip-text text-transparent">Packages</span>
+      <section className="bg-dark-950 py-20 relative overflow-hidden border-b border-primary-700/15">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary-500/5 rounded-full blur-[120px]"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold font-display mb-6 text-white">
+            Pricing & <span className="text-gradient">Packages</span>
           </h1>
-          <p className="text-xl text-primary-100">
+          <p className="text-xl text-dark-400">
             Flexible pricing plans designed to grow with your business.
             Choose the perfect package or customize your own.
           </p>
@@ -122,43 +120,43 @@ const Pricing = () => {
       </section>
 
       {/* Pricing Plans */}
-      <section className="py-20 bg-white dark:bg-dark-900">
+      <section className="py-20 bg-dark-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
               <div
                 key={index}
-                className={`relative bg-white dark:bg-dark-800 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-2 ${plan.popular ? 'ring-2 ring-primary-500 scale-105' : ''
+                className={`relative bg-dark-900 border rounded-2xl p-8 hover:-translate-y-2 transition-all ${plan.popular ? 'ring-2 ring-primary-500 scale-105 border-primary-500/30' : 'border-dark-700/50 hover:border-primary-500/30'
                   }`}
               >
                 {plan.popular && (
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-gradient-primary text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    <span className="bg-gradient-primary text-dark-950 px-4 py-1 rounded-full text-sm font-semibold">
                       Most Popular
                     </span>
                   </div>
                 )}
 
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${plan.color} flex items-center justify-center mb-6`}>
-                  <plan.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 rounded-xl bg-primary-500/15 flex items-center justify-center mb-6">
+                  <plan.icon className="w-8 h-8 text-primary-500" />
                 </div>
 
-                <h3 className="text-2xl font-bold font-display mb-2">{plan.name}</h3>
-                <p className="text-dark-600 dark:text-dark-400 text-sm mb-6">{plan.subtitle}</p>
+                <h3 className="text-2xl font-bold font-display mb-2 text-white">{plan.name}</h3>
+                <p className="text-dark-400 text-sm mb-6">{plan.subtitle}</p>
 
                 <div className="mb-6">
                   <div className="flex items-baseline">
-                    <span className="text-4xl font-bold">{plan.price}</span>
-                    {plan.period && <span className="text-dark-600 dark:text-dark-400 ml-2">{plan.period}</span>}
+                    <span className="text-4xl font-bold text-primary-500">{plan.price}</span>
+                    {plan.period && <span className="text-dark-400 ml-2">{plan.period}</span>}
                   </div>
-                  <p className="text-dark-600 dark:text-dark-400 text-sm mt-2">{plan.description}</p>
+                  <p className="text-dark-400 text-sm mt-2">{plan.description}</p>
                 </div>
 
                 <ul className="space-y-3 mb-8">
                   {plan.features.map((feature, idx) => (
                     <li key={idx} className="flex items-start">
-                      <Check className="w-5 h-5 text-primary-600 dark:text-primary-400 flex-shrink-0 mr-3 mt-0.5" />
-                      <span className="text-dark-700 dark:text-dark-300 text-sm">{feature}</span>
+                      <Check className="w-5 h-5 text-primary-500 flex-shrink-0 mr-3 mt-0.5" />
+                      <span className="text-dark-300 text-sm">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -166,8 +164,8 @@ const Pricing = () => {
                 <Link
                   to="/contact"
                   className={`cta-button block w-full text-center px-6 py-3 rounded-lg font-semibold transition-all flex items-center justify-center space-x-2 ${plan.popular
-                      ? 'bg-gradient-primary text-white hover:shadow-lg'
-                      : 'bg-dark-100 dark:bg-dark-700 text-dark-900 dark:text-dark-100 hover:bg-dark-200 dark:hover:bg-dark-600'
+                      ? 'bg-gradient-primary text-dark-950 hover:shadow-lg hover:shadow-primary-500/20'
+                      : 'bg-dark-800 border border-dark-700/50 text-dark-200 hover:border-primary-500/30 hover:text-primary-400'
                     }`}
                 >
                   <span>Get Free Consultation</span>
@@ -180,13 +178,13 @@ const Pricing = () => {
       </section>
 
       {/* Add-ons */}
-      <section className="py-20 bg-dark-50 dark:bg-dark-800">
+      <section className="py-20 bg-dark-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
               Add-On <span className="text-gradient">Services</span>
             </h2>
-            <p className="text-lg text-dark-600 dark:text-dark-400">
+            <p className="text-lg text-dark-400">
               Enhance your package with additional services
             </p>
           </div>
@@ -195,16 +193,16 @@ const Pricing = () => {
             {addOns.map((addon, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg flex items-center justify-between"
+                className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 flex items-center justify-between hover:border-primary-500/30 transition-colors"
               >
                 <div>
-                  <h3 className="font-semibold text-dark-900 dark:text-dark-100 mb-1">
+                  <h3 className="font-semibold text-white mb-1">
                     {addon.service}
                   </h3>
-                  <p className="text-sm text-dark-600 dark:text-dark-400">{addon.unit}</p>
+                  <p className="text-sm text-dark-400">{addon.unit}</p>
                 </div>
                 <div className="text-right">
-                  <div className="text-2xl font-bold text-primary-600 dark:text-primary-400">
+                  <div className="text-2xl font-bold text-primary-500">
                     {addon.price}
                   </div>
                 </div>
@@ -215,19 +213,19 @@ const Pricing = () => {
       </section>
 
       {/* Custom Projects */}
-      <section className="py-20 bg-white dark:bg-dark-900">
+      <section className="py-20 bg-dark-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-white">
             Need a <span className="text-gradient">Custom Solution?</span>
           </h2>
-          <p className="text-lg text-dark-600 dark:text-dark-400 mb-8">
+          <p className="text-lg text-dark-400 mb-8">
             Every business is unique. We offer custom project pricing tailored to your specific needs.
             Get in touch to discuss your requirements and receive a personalized quote.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/contact"
-              className="cta-button px-8 py-4 bg-gradient-primary text-white rounded-lg font-semibold text-lg hover:shadow-2xl flex items-center space-x-2"
+              className="cta-button px-8 py-4 bg-gradient-primary text-dark-950 rounded-lg font-semibold text-lg hover:shadow-2xl hover:shadow-primary-500/25 flex items-center space-x-2"
             >
               <span>Get Free Consultation</span>
               <ArrowRight className="w-5 h-5" />
@@ -246,10 +244,10 @@ const Pricing = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-dark-50 dark:bg-dark-800">
+      <section className="py-20 bg-dark-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
               Frequently Asked <span className="text-gradient">Questions</span>
             </h2>
           </div>
@@ -277,9 +275,9 @@ const Pricing = () => {
                 a: 'Yes! We work with clients globally. All communication can be done remotely via video calls, email, and project management tools.'
               },
             ].map((faq, index) => (
-              <div key={index} className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg">
-                <h3 className="font-semibold text-dark-900 dark:text-dark-100 mb-2">{faq.q}</h3>
-                <p className="text-dark-600 dark:text-dark-400 text-sm">{faq.a}</p>
+              <div key={index} className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
+                <h3 className="font-semibold text-white mb-2">{faq.q}</h3>
+                <p className="text-dark-400 text-sm">{faq.a}</p>
               </div>
             ))}
           </div>
@@ -290,4 +288,3 @@ const Pricing = () => {
 }
 
 export default Pricing
-

@@ -11,8 +11,8 @@ const About = () => {
   const values = [
     {
       icon: Target,
-      title: 'Results-Driven',
-      description: 'We focus on measurable outcomes and ROI for every project we undertake.'
+      title: 'Focus on Results',
+      description: 'We care about making you money and growing your business.'
     },
     {
       icon: Zap,
@@ -62,33 +62,34 @@ const About = () => {
   return (
     <div className="pt-16 md:pt-20">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-primary-600 to-primary-800 text-white py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-display mb-6">
-            About <span className="text-gradient bg-gradient-to-r from-primary-200 to-primary-300 bg-clip-text text-transparent">Buildlabs</span>
+      <section className="bg-dark-950 border-b border-primary-700/15 py-20 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary-500/5 rounded-full blur-[120px]"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold font-display mb-6 text-white">
+            About <span className="text-gradient">Buildlabs</span>
           </h1>
-          <p className="text-xl text-primary-100">
-            We're a premium digital marketing agency that turns business into profits.
-            Modern, creative, reliable, and results-driven.
+          <p className="text-xl text-dark-400">
+            We help your business grow online with great designs, videos, and ads.
+            Modern, creative, reliable, and focused on results.
           </p>
         </div>
       </section>
 
       {/* Who We Are */}
-      <section className="py-20 bg-white dark:bg-dark-900">
+      <section className="py-20 bg-dark-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <h2 className="text-3xl font-bold font-display mb-6 scroll-reveal">Who We Are</h2>
-            <p className="text-dark-600 dark:text-dark-400 mb-4 leading-relaxed scroll-reveal">
+          <div className="prose prose-lg max-w-none">
+            <h2 className="text-3xl font-bold font-display mb-6 scroll-reveal text-white">Who We Are</h2>
+            <p className="text-dark-400 mb-4 leading-relaxed scroll-reveal">
               Buildlabs is a premium digital marketing agency founded by a team of creative professionals and marketing experts.
               We're not just another agency—we're your strategic partners in digital growth.
             </p>
-            <p className="text-dark-600 dark:text-dark-400 mb-4 leading-relaxed scroll-reveal">
+            <p className="text-dark-400 mb-4 leading-relaxed scroll-reveal">
               Our team consists of video editors, web developers, graphic designers, performance marketers, and growth strategists
               who are passionate about turning creative ideas into profitable digital experiences. We've worked with startups,
               creators, local businesses, and production houses across various industries.
             </p>
-            <p className="text-dark-600 dark:text-dark-400 leading-relaxed scroll-reveal">
+            <p className="text-dark-400 leading-relaxed scroll-reveal">
               What sets us apart is our commitment to combining creative excellence with data-driven strategies.
               We don't just create beautiful content—we create content that converts, engages, and drives measurable results.
             </p>
@@ -97,44 +98,44 @@ const About = () => {
       </section>
 
       {/* Why Buildlabs */}
-      <section className="py-20 bg-dark-50 dark:bg-dark-800">
+      <section className="py-20 bg-dark-900">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold font-display mb-6 scroll-reveal">Why Buildlabs?</h2>
+          <h2 className="text-3xl font-bold font-display mb-6 scroll-reveal text-white">Why Buildlabs?</h2>
           <div className="space-y-6 scroll-reveal">
-            <div className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center">
-                <Zap className="w-6 h-6 text-primary-600 dark:text-primary-400 mr-3" />
+            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
+              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
+                <Zap className="w-6 h-6 text-primary-500 mr-3" />
                 End-to-End Solutions
               </h3>
-              <p className="text-dark-600 dark:text-dark-400">
+              <p className="text-dark-400">
                 From video editing to website development, from branding to performance marketing—we handle it all under one roof.
                 No need to coordinate with multiple agencies.
               </p>
             </div>
-            <div className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center">
-                <Target className="w-6 h-6 text-primary-600 dark:text-primary-400 mr-3" />
+            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
+              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
+                <Target className="w-6 h-6 text-primary-500 mr-3" />
                 Results-Driven Approach
               </h3>
-              <p className="text-dark-600 dark:text-dark-400">
+              <p className="text-dark-400">
                 Every project is backed by data and analytics. We measure everything and optimize for results, not just aesthetics.
               </p>
             </div>
-            <div className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center">
-                <Users className="w-6 h-6 text-primary-600 dark:text-primary-400 mr-3" />
+            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
+              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
+                <Users className="w-6 h-6 text-primary-500 mr-3" />
                 Dedicated Account Managers
               </h3>
-              <p className="text-dark-600 dark:text-dark-400">
+              <p className="text-dark-400">
                 You'll have a dedicated point of contact who understands your business and ensures smooth communication throughout the project.
               </p>
             </div>
-            <div className="bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center">
-                <Award className="w-6 h-6 text-primary-600 dark:text-primary-400 mr-3" />
+            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
+              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
+                <Award className="w-6 h-6 text-primary-500 mr-3" />
                 Modern & Reliable
               </h3>
-              <p className="text-dark-600 dark:text-dark-400">
+              <p className="text-dark-400">
                 We use cutting-edge tools and stay ahead of trends. Our processes are streamlined, and we deliver on time, every time.
               </p>
             </div>
@@ -143,25 +144,24 @@ const About = () => {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-20 bg-dark-50 dark:bg-dark-800">
+      <section className="py-20 bg-dark-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             <div>
-              <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center mb-6">
-                <Target className="w-8 h-8 text-white" />
+              <div className="w-16 h-16 bg-primary-500/15 rounded-xl flex items-center justify-center mb-6">
+                <Target className="w-8 h-8 text-primary-500" />
               </div>
-              <h2 className="text-3xl font-bold font-display mb-4">Our Mission</h2>
-              <p className="text-lg text-dark-600 dark:text-dark-400 leading-relaxed">
-                To empower brands with premium digital solutions that drive growth, engagement, and measurable results.
-                We turn creative ideas into profitable digital experiences.
+              <h2 className="text-3xl font-bold font-display mb-4 text-white">Our Mission</h2>
+              <p className="text-lg text-dark-400 leading-relaxed">
+                To help businesses grow online with great designs, videos, and ads.
               </p>
             </div>
             <div>
-              <div className="w-16 h-16 bg-gradient-primary rounded-xl flex items-center justify-center mb-6">
-                <Zap className="w-8 h-8 text-white" />
+              <div className="w-16 h-16 bg-primary-500/15 rounded-xl flex items-center justify-center mb-6">
+                <Zap className="w-8 h-8 text-primary-500" />
               </div>
-              <h2 className="text-3xl font-bold font-display mb-4">Our Vision</h2>
-              <p className="text-lg text-dark-600 dark:text-dark-400 leading-relaxed">
+              <h2 className="text-3xl font-bold font-display mb-4 text-white">Our Vision</h2>
+              <p className="text-lg text-dark-400 leading-relaxed">
                 To become the go-to digital marketing agency for brands that value creativity, reliability,
                 and results. We envision a future where every business can compete and thrive in the digital landscape.
               </p>
@@ -171,13 +171,13 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-white dark:bg-dark-900">
+      <section className="py-20 bg-dark-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
               Our <span className="text-gradient">Core Values</span>
             </h2>
-            <p className="text-lg text-dark-600 dark:text-dark-400">
+            <p className="text-lg text-dark-400">
               The principles that guide everything we do
             </p>
           </div>
@@ -186,13 +186,13 @@ const About = () => {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-dark-800 rounded-xl p-6 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1"
+                className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 hover:-translate-y-1 transition-all"
               >
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
-                  <value.icon className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 bg-primary-500/15 rounded-lg flex items-center justify-center mb-4">
+                  <value.icon className="w-6 h-6 text-primary-500" />
                 </div>
-                <h3 className="text-xl font-bold font-display mb-2">{value.title}</h3>
-                <p className="text-dark-600 dark:text-dark-400 text-sm">{value.description}</p>
+                <h3 className="text-xl font-bold font-display mb-2 text-white">{value.title}</h3>
+                <p className="text-dark-400 text-sm">{value.description}</p>
               </div>
             ))}
           </div>
@@ -200,13 +200,13 @@ const About = () => {
       </section>
 
       {/* Team */}
-      <section className="py-20 bg-dark-50 dark:bg-dark-800">
+      <section className="py-20 bg-dark-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
               Our <span className="text-gradient">Expertise</span>
             </h2>
-            <p className="text-lg text-dark-600 dark:text-dark-400">
+            <p className="text-lg text-dark-400">
               Specialized teams delivering excellence across all services
             </p>
           </div>
@@ -215,16 +215,16 @@ const About = () => {
             {team.map((member, index) => (
               <div
                 key={index}
-                className="service-card scroll-reveal-stagger bg-white dark:bg-dark-900 rounded-xl p-6 shadow-lg text-center"
+                className="service-card scroll-reveal-stagger bg-dark-900 border border-dark-700/50 rounded-xl p-6 text-center hover:border-primary-500/30 transition-colors"
               >
-                <h3 className="text-xl font-bold font-display mb-2">{member.name}</h3>
-                <p className="text-primary-600 dark:text-primary-400 font-semibold mb-3">{member.role}</p>
-                <p className="text-dark-600 dark:text-dark-400 text-sm mb-4">{member.description}</p>
+                <h3 className="text-xl font-bold font-display mb-2 text-white">{member.name}</h3>
+                <p className="text-primary-500 font-semibold mb-3">{member.role}</p>
+                <p className="text-dark-400 text-sm mb-4">{member.description}</p>
                 <div className="flex flex-wrap justify-center gap-2">
                   {member.expertise.map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300 rounded-full text-xs font-medium"
+                      className="px-3 py-1 bg-primary-500/10 text-primary-400 rounded-full text-xs font-medium border border-primary-500/20"
                     >
                       {skill}
                     </span>
@@ -237,13 +237,13 @@ const About = () => {
       </section>
 
       {/* Stats */}
-      <section className="py-20 bg-white dark:bg-dark-900">
+      <section className="py-20 bg-dark-900 border-y border-primary-700/15">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">{stat.number}</div>
-                <div className="text-dark-600 dark:text-dark-400 font-medium">{stat.label}</div>
+                <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">{stat.number}</div>
+                <div className="text-dark-400 font-medium">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -251,10 +251,10 @@ const About = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-dark-800 dark:to-dark-900">
+      <section className="py-20 bg-dark-950">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
               Why Work With Us?
             </h2>
           </div>
@@ -269,8 +269,8 @@ const About = () => {
               'Flexible packages for businesses of all sizes',
             ].map((item, index) => (
               <div key={index} className="flex items-start space-x-3">
-                <CheckCircle className="w-6 h-6 text-primary-600 dark:text-primary-400 flex-shrink-0 mt-0.5" />
-                <span className="text-dark-700 dark:text-dark-300 text-lg">{item}</span>
+                <CheckCircle className="w-6 h-6 text-primary-500 flex-shrink-0 mt-0.5" />
+                <span className="text-dark-300 text-lg">{item}</span>
               </div>
             ))}
           </div>
@@ -278,7 +278,7 @@ const About = () => {
           <div className="text-center">
             <Link
               to="/contact"
-              className="cta-button inline-flex items-center px-8 py-4 bg-gradient-primary text-white rounded-lg font-semibold text-lg hover:shadow-2xl"
+              className="cta-button inline-flex items-center px-8 py-4 bg-gradient-primary text-dark-950 rounded-lg font-semibold text-lg hover:shadow-2xl hover:shadow-primary-500/25"
             >
               Get Free Consultation
               <ArrowRight className="w-5 h-5 ml-2" />
@@ -291,4 +291,3 @@ const About = () => {
 }
 
 export default About
-

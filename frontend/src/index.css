@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-white dark:bg-dark-900 text-dark-900 dark:text-dark-50;
+    @apply bg-dark-950 text-dark-100;
     font-family: 'Inter', sans-serif;
   }
 
@@ -19,16 +19,45 @@
 }
 
 @layer utilities {
+  /* Gold gradient text — matching logo */
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-300 to-primary-500;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-primary-600;
   }
 
+  /* Gold button gradient */
   .bg-gradient-primary {
     @apply bg-gradient-to-r from-primary-500 to-primary-700;
   }
 
   .glass-effect {
-    @apply backdrop-blur-lg bg-white/10 dark:bg-dark-800/10 border border-white/20;
+    @apply backdrop-blur-lg bg-dark-900/50 border border-primary-500/10;
+  }
+}
+
+@layer components {
+  .cta-button {
+    @apply transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 20px 25px -5px rgba(212, 168, 67, 0.15), 0 10px 10px -5px rgba(212, 168, 67, 0.08);
+  }
+
+  .service-card {
+    @apply transition-all duration-300;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(212, 168, 67, 0.12), 0 10px 10px -5px rgba(212, 168, 67, 0.06);
+  }
+
+  a,
+  button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
@@ -37,38 +66,20 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — dark theme */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #f3f4f6;
-}
-
-@media (prefers-color-scheme: dark) {
-  ::-webkit-scrollbar-track {
-    background-color: #1f2937;
-  }
+  background-color: #0f0f0f;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d1d5db;
+  background-color: #404040;
   border-radius: 9999px;
 }
 
-@media (prefers-color-scheme: dark) {
-  ::-webkit-scrollbar-thumb {
-    background-color: #4b5563;
-  }
-}
-
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #9ca3af;
-}
-
-@media (prefers-color-scheme: dark) {
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #6b7280;
-  }
+  background-color: #D4A843;
 }

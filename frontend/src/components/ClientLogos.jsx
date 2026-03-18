@@ -1,5 +1,4 @@
 const ClientLogos = () => {
-  // Client logos (placed in public/images/clients/)
   const clients = [
     { name: 'Omkar Enterprise', file: 'techstartup-co.svg' },
     { name: 'Priya Creates', file: 'creator-studio.svg' },
@@ -12,7 +11,7 @@ const ClientLogos = () => {
   ]
 
   return (
-    <section className="py-16 bg-dark-50 dark:bg-dark-800">
+    <section className="py-16 bg-dark-900 border-y border-primary-700/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-8">
@@ -21,11 +20,11 @@ const ClientLogos = () => {
               key={index}
               className="scroll-reveal-stagger flex items-center justify-center"
             >
-              <div className="bg-white dark:bg-dark-900 rounded-lg p-6 shadow-md hover:shadow-xl transition-shadow w-full h-24 flex items-center justify-center border border-dark-200 dark:border-dark-700">
+              <div className="bg-dark-950 rounded-lg p-6 w-full h-24 flex items-center justify-center border border-dark-700/50 hover:border-primary-500/30 transition-colors">
                 <img
                   src={`/images/clients/${client.file}`}
                   alt={client.name}
-                  className="max-h-12 max-w-full object-contain opacity-60 hover:opacity-100 transition-opacity"
+                  className="max-h-12 max-w-full object-contain opacity-40 hover:opacity-80 transition-opacity"
                   loading="lazy"
                 />
               </div>
@@ -34,8 +33,8 @@ const ClientLogos = () => {
         </div>
 
         <div className="text-center mt-8 scroll-reveal">
-          <p className="text-sm text-dark-500 dark:text-dark-400">
-            <strong>Note:</strong> Client logos are stored in <code className="bg-dark-100 dark:bg-dark-900 px-2 py-1 rounded">public/images/clients/</code> — replace files with your official logos as needed.
+          <p className="text-sm text-dark-500">
+            <strong className="text-dark-400">Note:</strong> Client logos are stored in <code className="bg-dark-800 px-2 py-1 rounded text-primary-400/70">public/images/clients/</code> — replace files with your official logos as needed.
           </p>
         </div>
       </div>
@@ -44,4 +43,3 @@ const ClientLogos = () => {
 }
 
 export default ClientLogos
-

@@ -7,32 +7,36 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Gold palette — matching logo's golden tones
         primary: {
-          50: '#FCF9EE',
-          100: '#F6EECB',
-          200: '#EEDD9B',
-          300: '#E4CC6A',
-          400: '#DDB846',
-          500: '#D4AF37',
-          600: '#AA8C2C',
-          700: '#806921',
-          800: '#554616',
-          900: '#2B230B',
+          50: '#fefce8',
+          100: '#fef9c3',
+          200: '#fef08a',
+          300: '#fde047',
+          400: '#facc15',
+          500: '#D4A843',   // Main logo gold
+          600: '#C49A38',   // Slightly deeper gold
+          700: '#B8860B',   // Dark gold / amber
+          800: '#92680A',   // Deep amber
+          900: '#713F12',
+          950: '#422006',
         },
+        // Dark palette — matching logo's black background
         dark: {
-          50: '#f9fafb',
-          100: '#f3f4f6',
-          200: '#e5e7eb',
-          300: '#d1d5db',
-          400: '#9ca3af',
-          500: '#6b7280',
-          600: '#4b5563',
-          700: '#27272a',
-          800: '#18181b', // Main dark bg
-          900: '#000000', // Deep black
+          50: '#f8f8f8',
+          100: '#f0f0f0',
+          200: '#e4e4e4',
+          300: '#d1d1d1',
+          400: '#a0a0a0',
+          500: '#737373',
+          600: '#525252',
+          700: '#404040',
+          800: '#1a1a1a',
+          900: '#0f0f0f',
+          950: '#080808',
         },
         border: {
-          DEFAULT: '#3f3f46',
+          DEFAULT: '#2a2a2a',
         }
       },
       fontFamily: {
@@ -43,4 +47,3 @@ export default {
   },
   plugins: [],
 }
-
