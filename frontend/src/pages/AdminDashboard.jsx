@@ -25,7 +25,8 @@ const AdminDashboard = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!authService.isAuthenticated()) {
+    const user = authService.getCurrentUser()
+    if (!authService.isAuthenticated() || !user || user.role !== 'admin') {
       navigate('/admin/login')
       return
     }

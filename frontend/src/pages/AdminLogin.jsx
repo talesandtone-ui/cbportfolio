@@ -135,14 +135,7 @@ const AdminLogin = () => {
             </button>
           </form>
 
-          {/* Demo Credentials */}
-          <div className="mt-6 p-4 bg-dark-950 border border-dark-700/50 rounded-lg">
-            <p className="text-xs text-dark-400 text-center">
-              <strong className="text-dark-300">Admin Credentials:</strong><br />
-              Email: ganeshbhadane7781@gmail.com<br />
-              Password: ganeshbhadane7781
-            </p>
-          </div>
+
         </div>
       </div>
     </div>
