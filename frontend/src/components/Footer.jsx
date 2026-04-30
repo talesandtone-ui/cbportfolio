@@ -25,20 +25,20 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <img
-                src="/images/clients/logo.png"
-                alt="Buildlabs Digital"
-                className="h-16 md:h-20 w-auto object-contain"
-              />
+                <img
+                  src="/logo.png"
+                  alt="Buildlabs Digital"
+                  className="h-16 md:h-20 w-auto object-contain"
+                />
             </div>
             <p className="text-dark-500 text-sm leading-relaxed">
               We Help Your Business Grow. We help you get more customers with great videos, clean websites, and smart marketing.
             </p>
             <div className="flex space-x-4">
-              <a href="https://instagram.com/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">
+              <a href="https://www.instagram.com/buildlabsdigital/?utm_source=ig_web_button_share_sheet " target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="https://youtube.com/@buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">
+              <a href="https://www.youtube.com/@Buildlabsdigital" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
               <a href="https://linkedin.com/company/buildlabs.in" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-lg bg-dark-800 border border-dark-700/50 flex items-center justify-center hover:bg-primary-500/20 hover:border-primary-500/30 hover:text-primary-400 transition-colors">

@@ -146,7 +146,7 @@ export const firebaseAuthService = {
      * Check if user is authenticated
      */
     isAuthenticated: () => {
-        return !!auth.currentUser || !!localStorage.getItem('user');
+        return !!auth?.currentUser || !!localStorage.getItem('user');
     },
 
     /**
@@ -154,7 +154,7 @@ export const firebaseAuthService = {
      */
     getToken: async () => {
         try {
-            if (auth.currentUser) {
+            if (auth?.currentUser) {
                 return await auth.currentUser.getIdToken();
             }
             return null;

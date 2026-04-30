@@ -104,7 +104,7 @@ const Pricing = () => {
   ]
 
   return (
-    <div className="pt-16 md:pt-20">
+    <div className="pt-20 md:pt-24">
       {/* Hero */}
       <section className="bg-dark-950 py-20 relative overflow-hidden border-b border-primary-700/15">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary-500/5 rounded-full blur-[120px]"></div>

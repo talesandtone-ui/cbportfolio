@@ -105,7 +105,7 @@ const AdminDashboard = () => {
   const renderOverview = () => (
     <div className="space-y-6">
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         <div className="bg-dark-900 p-6 rounded-xl shadow-sm border border-dark-700/50">
           <div className="flex justify-between items-start">
             <div>
@@ -297,11 +297,49 @@ const AdminDashboard = () => {
         </div>
       </aside>
 
+      {/* Mobile Sidebar/Menu */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-dark-900 border-t border-dark-700/50 flex justify-around items-center p-3">
+        <button
+          onClick={() => setActiveTab('overview')}
+          className={`flex flex-col items-center space-y-1 ${activeTab === 'overview' ? 'text-primary-500' : 'text-dark-500'}`}
+        >
+          <TrendingUp size={20} />
+          <span className="text-[10px] font-medium uppercase tracking-wider">Overview</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('leads')}
+          className={`flex flex-col items-center space-y-1 ${activeTab === 'leads' ? 'text-primary-500' : 'text-dark-500'}`}
+        >
+          <Mail size={20} />
+          <span className="text-[10px] font-medium uppercase tracking-wider">Leads</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('users')}
+          className={`flex flex-col items-center space-y-1 ${activeTab === 'users' ? 'text-primary-500' : 'text-dark-500'}`}
+        >
+          <Users size={20} />
+          <span className="text-[10px] font-medium uppercase tracking-wider">Users</span>
+        </button>
+      </div>
+
       {/* Main Content */}
-      <main className="flex-1 md:ml-64 p-8">
-        <header className="flex justify-between items-center mb-8 md:hidden">
-          <h1 className="text-xl font-bold">Admin Panel</h1>
-          <button onClick={handleLogout}><LogOut size={20} /></button>
+      <main className="flex-1 md:ml-64 p-4 md:p-8 mb-20 md:mb-0">
+        <header className="flex justify-between items-center mb-8">
+          <div className="md:hidden">
+            <h1 className="text-xl font-bold font-display text-gradient">Buildlabs</h1>
+            <p className="text-xs text-dark-500 capitalize">{activeTab} Panel</p>
+          </div>
+          <div className="hidden md:block">
+            <h1 className="text-2xl font-bold font-display text-white capitalize">{activeTab} Panel</h1>
+            <p className="text-sm text-dark-500">Welcome back, Admin</p>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="p-2 text-dark-400 hover:text-red-500 transition-colors flex items-center space-x-2 bg-dark-900 md:bg-transparent rounded-lg border border-dark-700 md:border-none"
+          >
+            <span className="hidden md:inline text-sm font-medium">Logout</span>
+            <LogOut size={20} />
+          </button>
         </header>
 
         {activeTab === 'overview' && renderOverview()}

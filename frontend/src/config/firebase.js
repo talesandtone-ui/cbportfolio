@@ -17,14 +17,20 @@ const firebaseConfig = {
     measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+let app, analytics, auth, db, storage;
 
-// Initialize Firebase services
-const analytics = getAnalytics(app);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const storage = getStorage(app);
+try {
+  // Initialize Firebase
+  app = initializeApp(firebaseConfig);
+
+  // Initialize Firebase services
+  analytics = getAnalytics(app);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  storage = getStorage(app);
+} catch (error) {
+  console.error("Firebase Initialization Error: Please make sure all VITE_FIREBASE_* environment variables are set. This is often the cause of a blank screen on Netlify deployments.", error);
+}
 
 // Export services for use throughout the application
 export { app, analytics, auth, db, storage };

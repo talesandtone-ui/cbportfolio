@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
             <img
-              src="/images/clients/logo.png"
+              src="/logo.png"
               alt="Buildlabs Digital"
               className="h-14 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />

@@ -40,7 +40,7 @@ const Home = () => {
   ]
 
   return (
-    <div className="pt-16 md:pt-20">
+    <div className="pt-20 md:pt-24">
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-dark-950 text-white">
         {/* Animated gold glow */}
