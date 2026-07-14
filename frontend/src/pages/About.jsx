@@ -1,288 +1,224 @@
 import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Target, Zap, Users, Award, ArrowRight, CheckCircle } from 'lucide-react'
 import { reinitAnimations } from '../utils/animations'
+import useSEO from '../hooks/useSEO'
+
+// Light-themed brand logo components for white background marquee
+const LightUshaLogo = () => (
+  <div className="flex flex-col items-center justify-center text-neutral-800 select-none">
+    <svg className="w-8 h-8 mb-1 text-sky-600" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 2.2L19 11.5V18h-2v-6H7v6H5v-6.5l7-6.3z" />
+      <path d="M10 14h4v4h-4z" />
+    </svg>
+    <span className="text-[9px] font-extrabold tracking-[0.25em] font-sans text-neutral-700">USHA INFOTECH</span>
+  </div>
+)
+
+const LightUshaInfraLogo = () => (
+  <div className="flex flex-col items-center justify-center text-neutral-800 select-none">
+    <svg className="w-8 h-8 mb-1 text-emerald-600" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm0 2.2L19 11.5V18h-2v-6H7v6H5v-6.5l7-6.3z" />
+      <path d="M10 14h4v4h-4z" />
+    </svg>
+    <span className="text-[9px] font-extrabold tracking-[0.25em] font-sans text-neutral-700">USHA INFRA</span>
+  </div>
+)
+
+const LightVaamsiLogo = () => (
+  <div className="flex flex-col items-center justify-center text-neutral-800 select-none">
+    <svg className="w-8 h-8 mb-1 text-indigo-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+      <path d="M12 22C12 22 7 17 7 13C7 11 8.5 9 12 5C15.5 9 17 11 17 13C17 17 12 22 12 22Z" />
+      <path d="M12 22C12 22 9 18 9 15C9 13.5 10 12 12 9C14 12 15 13.5 15 15C15 18 12 22 12 22Z" />
+    </svg>
+    <span className="text-[9px] font-bold tracking-[0.25em] font-sans text-neutral-700">VAAMSI</span>
+  </div>
+)
+
+const LightBniLogo = () => (
+  <div className="flex flex-col items-center justify-center text-neutral-800 select-none">
+    <span className="text-2xl font-black italic tracking-tighter text-red-650 mb-0.5">BNI</span>
+    <span className="text-[7px] font-bold tracking-[0.3em] text-neutral-500">CHAMPIONS</span>
+  </div>
+)
+
+const LightYiLogo = () => (
+  <div className="flex flex-col items-center justify-center text-neutral-800 select-none">
+    <div className="flex items-center space-x-1.5">
+      <span className="text-2xl font-black tracking-tight text-neutral-850">YI</span>
+      <div className="h-5 w-[1.5px] bg-[#8BCF1D]"></div>
+      <span className="text-[7px] font-bold leading-none tracking-wider text-left max-w-[45px] text-neutral-700">Young Indians</span>
+    </div>
+  </div>
+)
+
+const LightBanjosLogo = () => (
+  <div className="flex flex-col items-center justify-center text-neutral-850 select-none">
+    <span className="text-xl font-serif italic font-extrabold tracking-tight text-yellow-600">Banjo's</span>
+    <span className="text-[6px] font-bold tracking-[0.2em] text-neutral-500 uppercase -mt-0.5">THE FOOD CHAIN</span>
+  </div>
+)
 
 const About = () => {
+  useSEO({
+    title: 'About Us - Our Story & Mission',
+    description: 'Learn more about Buildlabs Digital, our core philosophy, our team, and how we help brands grow through digital content and design.',
+    keywords: 'about buildlabs, digital marketing team, content creation agency',
+    canonicalPath: '/about',
+    noIndex: false
+  })
+
   useEffect(() => {
     reinitAnimations()
   }, [])
 
-  const values = [
-    {
-      icon: Target,
-      title: 'Focus on Results',
-      description: 'We care about making you money and growing your business.'
-    },
-    {
-      icon: Zap,
-      title: 'Creative Excellence',
-      description: 'We combine creativity with strategy to deliver visually stunning and effective solutions.'
-    },
-    {
-      icon: Users,
-      title: 'Client-Centric',
-      description: 'Your success is our success. We build long-term partnerships, not just projects.'
-    },
-    {
-      icon: Award,
-      title: 'Reliable & Modern',
-      description: 'We stay ahead of trends and use cutting-edge tools to deliver premium results.'
-    },
+  const logos = [
+    <LightUshaLogo />,
+    <LightUshaInfraLogo />,
+    <LightVaamsiLogo />,
+    <LightBniLogo />,
+    <LightYiLogo />,
+    <LightBanjosLogo />
   ]
 
-  const team = [
-    {
-      name: 'Creative Team',
-      role: 'Video & Design',
-      description: 'Expert editors, motion graphics artists, and designers',
-      expertise: ['Video Editing', 'Motion Graphics', 'Graphic Design', 'Brand Identity']
-    },
-    {
-      name: 'Tech Team',
-      role: 'Web & Development',
-      description: 'Full-stack developers and technical specialists',
-      expertise: ['React/Next.js', 'WordPress', 'E-commerce', 'API Integration']
-    },
-    {
-      name: 'Marketing Team',
-      role: 'Strategy & Growth',
-      description: 'Performance marketers and growth strategists',
-      expertise: ['Performance Marketing', 'Social Media', 'SEO', 'Analytics']
-    },
-  ]
-
-  const stats = [
-    { number: '500+', label: 'Projects Completed' },
-    { number: '200+', label: 'Happy Clients' },
-    { number: '98%', label: 'Client Satisfaction' },
-    { number: '5+', label: 'Years of Experience' },
-  ]
+  const duplicatedLogos = [...logos, ...logos, ...logos, ...logos]
 
   return (
-    <div className="pt-20 md:pt-24">
-      {/* Hero */}
-      <section className="bg-dark-950 border-b border-primary-700/15 py-20 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary-500/5 rounded-full blur-[120px]"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-display mb-6 text-white">
-            About <span className="text-gradient">Buildlabs</span>
-          </h1>
-          <p className="text-xl text-dark-400">
-            We help your business grow online with great designs, videos, and ads.
-            Modern, creative, reliable, and focused on results.
-          </p>
-        </div>
-      </section>
-
-      {/* Who We Are */}
-      <section className="py-20 bg-dark-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            <h2 className="text-3xl font-bold font-display mb-6 scroll-reveal text-white">Who We Are</h2>
-            <p className="text-dark-400 mb-4 leading-relaxed scroll-reveal">
-              Buildlabs is a premium digital marketing agency founded by a team of creative professionals and marketing experts.
-              We're not just another agency—we're your strategic partners in digital growth.
-            </p>
-            <p className="text-dark-400 mb-4 leading-relaxed scroll-reveal">
-              Our team consists of video editors, web developers, graphic designers, performance marketers, and growth strategists
-              who are passionate about turning creative ideas into profitable digital experiences. We've worked with startups,
-              creators, local businesses, and production houses across various industries.
-            </p>
-            <p className="text-dark-400 leading-relaxed scroll-reveal">
-              What sets us apart is our commitment to combining creative excellence with data-driven strategies.
-              We don't just create beautiful content—we create content that converts, engages, and drives measurable results.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Buildlabs */}
-      <section className="py-20 bg-dark-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold font-display mb-6 scroll-reveal text-white">Why Buildlabs?</h2>
-          <div className="space-y-6 scroll-reveal">
-            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
-                <Zap className="w-6 h-6 text-primary-500 mr-3" />
-                End-to-End Solutions
-              </h3>
-              <p className="text-dark-400">
-                From video editing to website development, from branding to performance marketing—we handle it all under one roof.
-                No need to coordinate with multiple agencies.
-              </p>
-            </div>
-            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
-                <Target className="w-6 h-6 text-primary-500 mr-3" />
-                Results-Driven Approach
-              </h3>
-              <p className="text-dark-400">
-                Every project is backed by data and analytics. We measure everything and optimize for results, not just aesthetics.
-              </p>
-            </div>
-            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
-                <Users className="w-6 h-6 text-primary-500 mr-3" />
-                Dedicated Account Managers
-              </h3>
-              <p className="text-dark-400">
-                You'll have a dedicated point of contact who understands your business and ensures smooth communication throughout the project.
-              </p>
-            </div>
-            <div className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 transition-colors">
-              <h3 className="text-xl font-bold font-display mb-3 flex items-center text-white">
-                <Award className="w-6 h-6 text-primary-500 mr-3" />
-                Modern & Reliable
-              </h3>
-              <p className="text-dark-400">
-                We use cutting-edge tools and stay ahead of trends. Our processes are streamlined, and we deliver on time, every time.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
-      <section className="py-20 bg-dark-950">
+    <div className="bg-white text-black min-h-screen">
+      {/* Section 1: Who We Are (White Background) */}
+      <section className="py-20 md:py-28 bg-white pt-32 md:pt-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <div className="w-16 h-16 bg-primary-500/15 rounded-xl flex items-center justify-center mb-6">
-                <Target className="w-8 h-8 text-primary-500" />
-              </div>
-              <h2 className="text-3xl font-bold font-display mb-4 text-white">Our Mission</h2>
-              <p className="text-lg text-dark-400 leading-relaxed">
-                To help businesses grow online with great designs, videos, and ads.
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* Left Content Column */}
+            <div className="lg:col-span-6 space-y-6 text-left scroll-reveal">
+              <span className="text-neutral-400 text-xs font-bold uppercase tracking-wider block">
+                WHO WE ARE
+              </span>
+              <h2 className="text-4xl md:text-6xl font-black font-display text-black tracking-tight leading-none">
+                People connect with people first.
+              </h2>
+              <p className="text-neutral-800 text-sm md:text-base leading-relaxed font-semibold">
+                At Buildlabs, we know that people connect with people before they connect with companies.
+              </p>
+              <p className="text-neutral-650 text-xs md:text-sm leading-relaxed">
+                Businesses naturally grow when their founders and leaders become trusted voices in their industry. That's why we focus entirely on executive and personal branding services.
+              </p>
+              <p className="text-neutral-650 text-xs md:text-sm leading-relaxed">
+                We help professionals share their expertise and build strong digital profiles that drive real business growth.
               </p>
             </div>
-            <div>
-              <div className="w-16 h-16 bg-primary-500/15 rounded-xl flex items-center justify-center mb-6">
-                <Zap className="w-8 h-8 text-primary-500" />
-              </div>
-              <h2 className="text-3xl font-bold font-display mb-4 text-white">Our Vision</h2>
-              <p className="text-lg text-dark-400 leading-relaxed">
-                To become the go-to digital marketing agency for brands that value creativity, reliability,
-                and results. We envision a future where every business can compete and thrive in the digital landscape.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Values */}
-      <section className="py-20 bg-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
-              Our <span className="text-gradient">Core Values</span>
-            </h2>
-            <p className="text-lg text-dark-400">
-              The principles that guide everything we do
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="bg-dark-950 border border-dark-700/50 rounded-xl p-6 hover:border-primary-500/30 hover:-translate-y-1 transition-all"
-              >
-                <div className="w-12 h-12 bg-primary-500/15 rounded-lg flex items-center justify-center mb-4">
-                  <value.icon className="w-6 h-6 text-primary-500" />
-                </div>
-                <h3 className="text-xl font-bold font-display mb-2 text-white">{value.title}</h3>
-                <p className="text-dark-400 text-sm">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="py-20 bg-dark-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
-              Our <span className="text-gradient">Expertise</span>
-            </h2>
-            <p className="text-lg text-dark-400">
-              Specialized teams delivering excellence across all services
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="service-card scroll-reveal-stagger bg-dark-900 border border-dark-700/50 rounded-xl p-6 text-center hover:border-primary-500/30 transition-colors"
-              >
-                <h3 className="text-xl font-bold font-display mb-2 text-white">{member.name}</h3>
-                <p className="text-primary-500 font-semibold mb-3">{member.role}</p>
-                <p className="text-dark-400 text-sm mb-4">{member.description}</p>
-                <div className="flex flex-wrap justify-center gap-2">
-                  {member.expertise.map((skill, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 bg-primary-500/10 text-primary-400 rounded-full text-xs font-medium border border-primary-500/20"
-                    >
-                      {skill}
-                    </span>
-                  ))}
+            {/* Right Image Column */}
+            <div className="lg:col-span-6 scroll-reveal relative">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl aspect-[4/3] md:aspect-[16/11]">
+                <img
+                  src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop"
+                  alt="Personal Branding"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                
+                {/* Float Badge overlay */}
+                <div className="absolute bottom-6 right-6 bg-[#111]/95 backdrop-blur-sm text-[#C5FF2E] px-4 py-2 rounded-xl flex items-center space-x-1.5 border border-neutral-800 shadow-2xl text-[10px] md:text-xs font-black tracking-wider uppercase">
+                  <span className="text-[#C5FF2E]">✦</span>
+                  <span>Personal Branding Agency</span>
                 </div>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-20 bg-dark-900 border-y border-primary-700/15">
+      {/* Section 2: Our Story (Black Background) */}
+      <section className="py-20 md:py-28 bg-[#0b0b0b] text-white border-t border-neutral-900/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-primary-500 mb-2">{stat.number}</div>
-                <div className="text-dark-400 font-medium">{stat.label}</div>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            {/* Left Image Column */}
+            <div className="lg:col-span-6 scroll-reveal order-2 lg:order-1">
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl aspect-[4/3] md:aspect-[16/11]">
+                <img
+                  src="https://images.unsplash.com/photo-1531538606174-0f90ff5dce83?q=80&w=600&auto=format&fit=crop"
+                  alt="Our Story"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
               </div>
-            ))}
+            </div>
+
+            {/* Right Content Column */}
+            <div className="lg:col-span-6 space-y-6 text-left scroll-reveal order-1 lg:order-2">
+              <span className="text-neutral-500 text-xs font-bold uppercase tracking-wider block">
+                OUR STORY
+              </span>
+              <h2 className="text-4xl md:text-6xl font-black font-display text-white tracking-tight leading-none uppercase">
+                How It Started
+              </h2>
+              <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">
+                We noticed that many great businesses struggle to grow simply because their founders are invisible online. They have strong expertise but lack a solid digital presence.
+              </p>
+              <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">
+                Many leaders post content without a clear strategy, leading to inconsistent results. They stay busy without seeing real growth in their personal brand.
+              </p>
+              <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">
+                We realized the missing link is the person behind the brand. When a founder becomes visible and builds trust, it naturally leads to better opportunities.
+              </p>
+              <p className="text-neutral-400 text-xs md:text-sm leading-relaxed">
+                We built Buildlabs to help founders turn their expertise into influence and drive sustainable growth for their businesses.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-dark-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold font-display mb-4 text-white">
-              Why Work With Us?
-            </h2>
-          </div>
+      {/* Section 3: Why We Exist (White Background) */}
+      <section className="py-20 md:py-28 bg-white border-t border-neutral-100 relative text-black">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center space-y-8 scroll-reveal">
+          <span className="text-neutral-400 text-xs font-bold uppercase tracking-[0.2em] block">
+            WHY WE EXIST
+          </span>
+          
+          {/* Main Centered Quote */}
+          <blockquote className="text-2xl md:text-4xl font-serif italic text-neutral-850 leading-relaxed max-w-4xl mx-auto">
+            "To empower founders and professionals to become influential personal brands that inspire, educate, and create meaningful business opportunities."
+          </blockquote>
 
-          <div className="space-y-4 mb-8">
-            {[
-              'End-to-end digital solutions under one roof',
-              'Modern, creative, and results-driven approach',
-              'Dedicated account managers for personalized service',
-              'Transparent communication and regular updates',
-              'Data-driven strategies with measurable results',
-              'Flexible packages for businesses of all sizes',
-            ].map((item, index) => (
-              <div key={index} className="flex items-start space-x-3">
-                <CheckCircle className="w-6 h-6 text-primary-500 flex-shrink-0 mt-0.5" />
-                <span className="text-dark-300 text-lg">{item}</span>
-              </div>
-            ))}
+          {/* Subtitle taglines */}
+          <div className="flex flex-col space-y-2 text-xs md:text-sm text-neutral-500 font-medium">
+            <span>Every expert deserves visibility.</span>
+            <span>Every entrepreneur deserves authority.</span>
+            <span>Every business deserves a face people can trust.</span>
           </div>
+        </div>
+      </section>
 
-          <div className="text-center">
-            <Link
-              to="/contact"
-              className="cta-button inline-flex items-center px-8 py-4 bg-gradient-primary text-dark-950 rounded-lg font-semibold text-lg hover:shadow-2xl hover:shadow-primary-500/25"
-            >
-              Get Free Consultation
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
+      {/* Brand Logos Marquee (White background directly above Philosophy) */}
+      <div className="w-full overflow-hidden relative py-8 bg-white border-t border-neutral-100">
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+
+        <div className="animate-marquee-ltr flex items-center space-x-20 md:space-x-28">
+          {duplicatedLogos.map((logo, index) => (
+            <div key={`logo-${index}`} className="flex-shrink-0 flex items-center justify-center min-w-[120px]">
+              {logo}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Section 4: Our Philosophy (Black Background) */}
+      <section className="py-20 md:py-28 bg-[#0b0b0b] text-white border-t border-neutral-900/60 relative">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center justify-center space-y-8 scroll-reveal">
+          <span className="text-neutral-500 text-xs font-bold uppercase tracking-[0.2em] block">
+            OUR PHILOSOPHY
+          </span>
+          
+          {/* Main Centered Quote */}
+          <blockquote className="text-2xl md:text-4xl font-serif italic text-white/95 leading-relaxed max-w-4xl mx-auto">
+            "People buy from people they know, like, and trust."
+          </blockquote>
+
+          {/* Subtitle taglines */}
+          <div className="flex flex-col space-y-2 text-xs md:text-sm text-neutral-500 font-medium">
+            <span>Products can be copied. Services can be replicated.</span>
+            <span>But an authentic <strong className="text-white font-extrabold">personal brand</strong> is impossible to duplicate.</span>
           </div>
         </div>
       </section>

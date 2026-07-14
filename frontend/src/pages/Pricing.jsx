@@ -1,7 +1,22 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Check, ArrowRight, Zap, TrendingUp, Crown, MessageCircle } from 'lucide-react'
+import useSEO from '../hooks/useSEO'
+import { reinitAnimations } from '../utils/animations'
 
 const Pricing = () => {
+  useSEO({
+    title: 'Pricing & Plans - Content Creation Packages',
+    description: 'Affordable, transparent pricing plans for content creation, video editing, social media management, website development, and branding with Buildlabs.',
+    keywords: 'marketing pricing, content marketing plans, video editing pricing, buildlabs plans',
+    canonicalPath: '/pricing',
+    noIndex: false
+  })
+
+  useEffect(() => {
+    reinitAnimations()
+  }, [])
+
   const plans = [
     {
       name: 'Starter',

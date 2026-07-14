@@ -1,206 +1,277 @@
-import { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { ArrowRight, Play, TrendingUp, Eye, Users, Zap, Video, Globe, Megaphone, BarChart3, Clock } from 'lucide-react'
+import { useState, useEffect } from 'react'
+import { Play, ArrowRight, Video, FileText, Image, Award } from 'lucide-react'
 import { reinitAnimations } from '../utils/animations'
+import useSEO from '../hooks/useSEO'
 
 const Portfolio = () => {
+  useSEO({
+    title: 'Our Portfolio - Recent Works',
+    description: 'Browse the portfolio and creative works of Buildlabs Digital.',
+    noIndex: true
+  })
+
   useEffect(() => {
     reinitAnimations()
   }, [])
 
-  const caseStudies = [
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  const filterCategories = [
+    { name: 'All', count: 12 },
+    { name: 'Social Media', count: 4 },
+    { name: 'Video Production', count: 4 },
+    { name: 'Design', count: 2 },
+    { name: 'Branding', count: 2 }
+  ]
+
+  const items = [
+    // Social Media (4 items) - Vertical aspect
     {
       id: 1,
-      client: 'Taste Fusion',
-      category: 'Web Development + Marketing',
-      problem: 'Low website conversion rate and minimal online presence',
-      strategy: 'Complete website redesign with conversion-focused landing pages and performance marketing campaigns',
-      services: ['Website Development', 'SEO Optimization', 'Performance Marketing', 'Landing Pages'],
-      results: {
-        views: '1500K+',
-        leads: '1120+',
-        conversions: '15%',
-        revenue: '₹2L+'
-      },
-      icon: Globe
+      title: 'TIMUS Luggage Campaign',
+      category: 'Social Media',
+      image: 'https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=600&auto=format&fit=crop',
+      metric: '1.5M+ Views',
+      caption: 'you five things.',
+      aspect: 'aspect-[9/16]',
+      icon: Play
     },
     {
       id: 2,
-      client: 'Omkar Enterprise',
-      category: 'Web Development + Marketing',
-      problem: 'Low website conversion rate and minimal online presence',
-      strategy: 'Complete website redesign with conversion-focused landing pages and performance marketing campaigns',
-      services: ['Website Development', 'SEO Optimization', 'Performance Marketing', 'Landing Pages'],
-      results: {
-        views: '25K+',
-        leads: '120+',
-        conversions: '15%',
-        revenue: '₹L+'
-      },
-      icon: Globe
+      title: 'USHA B2B Thought Leadership',
+      category: 'Social Media',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop',
+      metric: '1.2M+ Reach',
+      caption: 'Wo bhi aapke LOCATION PER',
+      aspect: 'aspect-[9/16]',
+      icon: FileText
     },
     {
       id: 3,
-      client: 'Chetu Flims',
-      category: 'Video Editing + Social Media',
-      problem: 'Inconsistent content quality and low engagement rates',
-      strategy: 'Professional video editing pipeline and strategic social media management',
-      services: ['Video Editing', 'Motion Graphics', 'Social Media Management', 'Content Strategy'],
-      results: {
-        views: '50K+',
-        leads: '200+',
-        conversions: '12%',
-        revenue: '₹2L+'
-      },
+      title: 'Grace Realty Buyer Education',
+      category: 'Social Media',
+      image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600&auto=format&fit=crop',
+      metric: '800K+ Views',
+      caption: 'Tourism growth',
+      aspect: 'aspect-[9/16]',
+      icon: Play
+    },
+    {
+      id: 4,
+      title: 'Eunora Local Patient Reels',
+      category: 'Social Media',
+      image: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?q=80&w=600&auto=format&fit=crop',
+      metric: '400K+ Views',
+      caption: 'What Reduces',
+      aspect: 'aspect-[9/16]',
+      icon: Play
+    },
+
+    // Video Production (4 items) - Vertical aspect
+    {
+      id: 5,
+      title: 'Eunora Office Stretch Routine',
+      category: 'Video Production',
+      image: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?q=80&w=600&auto=format&fit=crop',
+      metric: 'Educational Short',
+      caption: "Relax / it's not",
+      aspect: 'aspect-[9/16]',
+      icon: Video
+    },
+    {
+      id: 6,
+      title: 'Grace Realty Micro-Market Guide',
+      category: 'Video Production',
+      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=600&auto=format&fit=crop',
+      metric: 'Cinematic Vlog',
+      caption: 'Nashik me Bahut / bada Development !',
+      aspect: 'aspect-[9/16]',
+      icon: Video
+    },
+    {
+      id: 7,
+      title: 'Timus Cinematic Travel Film',
+      category: 'Video Production',
+      image: 'https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=600&auto=format&fit=crop',
+      metric: 'High-Hook Edit',
+      caption: 'Winter Snow',
+      aspect: 'aspect-[9/16]',
+      icon: Video
+    },
+    {
+      id: 8,
+      title: 'B2B Enterprise Software Showcase',
+      category: 'Video Production',
+      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop',
+      metric: 'SaaS Case Study',
+      caption: 'and',
+      aspect: 'aspect-[9/16]',
       icon: Video
     },
 
+    // Branding (2 items) - Landscape aspect
+    {
+      id: 9,
+      title: 'Timus Logo & Ribbon Redesign',
+      category: 'Branding',
+      image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop',
+      metric: 'Visual Identity',
+      caption: 'Rebranding Timus',
+      aspect: 'aspect-[16/10]',
+      icon: Award
+    },
+    {
+      id: 10,
+      title: 'Eunora Clinical Style Guide',
+      category: 'Branding',
+      image: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=600&auto=format&fit=crop',
+      metric: 'Corporate Branding',
+      caption: 'Style Guides',
+      aspect: 'aspect-[4/3]',
+      icon: Award
+    },
+
+    // Design (2 items) - Landscape aspect
+    {
+      id: 11,
+      title: 'Grace Realty Landing Page',
+      category: 'Design',
+      image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=600&auto=format&fit=crop',
+      metric: 'UI/UX Design',
+      caption: 'Landing Page',
+      aspect: 'aspect-[16/9]',
+      icon: Image
+    },
+    {
+      id: 12,
+      title: 'Buildlabs Marketing Graphic Kit',
+      category: 'Design',
+      image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=600&auto=format&fit=crop',
+      metric: 'Social Feed Kit',
+      caption: 'Graphic Kit',
+      aspect: 'aspect-[4/3]',
+      icon: Image
+    }
   ]
 
+  const filteredItems = activeFilter === 'All'
+    ? items
+    : items.filter(item => item.category === activeFilter)
+
   return (
-    <div className="pt-20 md:pt-24">
-      {/* Hero */}
-      <section className="bg-dark-950 py-20 relative overflow-hidden border-b border-primary-700/15">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-primary-500/5 rounded-full blur-[120px]"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold font-display mb-6 text-white">
-            Our <span className="text-gradient">Portfolio</span>
-          </h1>
-          <p className="text-xl text-dark-400">
-            Real results from real clients. See how we've helped brands grow their digital presence.
-          </p>
+    <div className="pt-24 md:pt-28 bg-[#0b0b0b] text-white">
+      {/* Hero Title */}
+      <section className="relative overflow-hidden py-12 md:py-20 border-b border-neutral-900/60 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-left">
+            <div className="flex items-center space-x-2 mb-3">
+              <span className="w-6 h-[1.5px] bg-[#C5FF2E]"></span>
+              <span className="text-xs font-extrabold tracking-widest text-[#C5FF2E] uppercase">
+                PORTFOLIO
+              </span>
+            </div>
+            <h1 className="text-3xl md:text-5xl font-black font-display mb-4 tracking-tight leading-none text-white font-serif">
+              The Portfolio
+            </h1>
+            <p className="text-sm md:text-base text-neutral-400 font-medium">
+              Every frame crafted with intention.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="py-20 bg-dark-950">
+      {/* Filter Bar & Grid */}
+      <section className="py-12 bg-[#0b0b0b]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-8">
-            {caseStudies.map((study, index) => (
-              <div
-                key={study.id}
-                className="portfolio-item scroll-reveal-stagger bg-dark-900 border border-dark-700/50 rounded-2xl overflow-hidden hover:border-primary-500/30 transition-colors"
+          {/* Interactive Filters */}
+          <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
+            {filterCategories.map((cat) => (
+              <button
+                key={cat.name}
+                onClick={() => setActiveFilter(cat.name)}
+                className={`px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-wider transition-all duration-300 border flex items-center space-x-1.5 ${
+                  activeFilter === cat.name
+                    ? 'bg-[#C5FF2E] text-black border-[#C5FF2E] shadow-lg shadow-[#C5FF2E]/10'
+                    : 'bg-neutral-900/50 text-neutral-450 border-neutral-800/80 hover:text-white hover:border-neutral-700'
+                }`}
               >
-                {/* Image/Video Placeholder */}
-                <div className="bg-gradient-to-br from-primary-700/30 to-primary-900/30 h-64 relative flex items-center justify-center overflow-hidden">
-                  <div className="absolute inset-0 bg-dark-950/30"></div>
-                  <div className="absolute inset-0 opacity-30">
-                    <div className="w-full h-full flex items-center justify-center">
-                      <study.icon className="w-32 h-32 text-primary-500/30" />
-                    </div>
-                  </div>
-                  <div className="portfolio-overlay text-center text-white">
-                    <study.icon className="w-16 h-16 mx-auto mb-4 text-primary-400 opacity-80" />
-                    <div className="bg-primary-500/20 backdrop-blur-sm rounded-lg px-4 py-2 inline-block mb-2 border border-primary-500/20">
-                      <Play className="w-6 h-6 mx-auto text-primary-400" />
-                    </div>
-                    <h3 className="text-xl font-bold mt-4">{study.client}</h3>
-                    <p className="text-sm text-primary-400 mt-2">View Case Study</p>
-                    <p className="text-xs text-dark-300 mt-1">Click to see video/screenshots</p>
-                  </div>
+                <span>{cat.name}</span>
+                <span className={`text-[9px] px-1.5 py-0.5 rounded-md font-extrabold ${
+                  activeFilter === cat.name ? 'bg-black/10 text-black' : 'bg-neutral-800 text-neutral-500'
+                }`}>
+                  {cat.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          <div className="flex justify-between items-center mb-6 pb-4 border-b border-neutral-900">
+            <span className="text-neutral-500 text-xs font-bold tracking-wider uppercase">
+              {filteredItems.length} works
+            </span>
+          </div>
+
+          {/* Pinterest-style Masonry Columns layout - 4 columns on desktop */}
+          <div className="columns-2 sm:columns-3 lg:columns-4 gap-4">
+            {filteredItems.map((item) => (
+              <div
+                key={item.id}
+                className={`break-inside-avoid mb-4 w-full relative rounded-[1.5rem] overflow-hidden shadow-xl border border-neutral-900/40 hover:scale-[1.02] transition-all duration-500 cursor-pointer group ${item.aspect}`}
+              >
+                {/* Cover Image */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+
+                {/* Dark Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent z-10"></div>
+
+                {/* Metric/Views Badge */}
+                <div className="absolute top-3 left-3 z-20 flex space-x-2">
+                  <span className="px-2 py-0.5 bg-black/60 backdrop-blur-md text-[8px] font-extrabold text-[#C5FF2E] tracking-wider rounded border border-white/5 uppercase">
+                    {item.metric}
+                  </span>
                 </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <h3 className="text-2xl font-bold font-display mb-1 text-white">{study.client}</h3>
-                      <span className="text-sm text-primary-500 font-medium">
-                        {study.category}
-                      </span>
-                    </div>
-                  </div>
+                {/* Category Icon Overlay */}
+                <div className="absolute top-3 right-3 z-20 w-7 h-7 rounded-full bg-black/60 backdrop-blur-sm flex items-center justify-center text-[#C5FF2E] border border-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <item.icon className="w-3 h-3" />
+                </div>
 
-                  {/* Problem */}
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-white mb-2">Challenge:</h4>
-                    <p className="text-dark-400 text-sm">{study.problem}</p>
-                  </div>
-
-                  {/* Strategy */}
-                  <div className="mb-4">
-                    <h4 className="font-semibold text-white mb-2">Our Strategy:</h4>
-                    <p className="text-dark-400 text-sm">{study.strategy}</p>
-                  </div>
-
-                  {/* Services */}
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-white mb-2">Services Provided:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {study.services.map((service, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-primary-500/10 text-primary-400 rounded-full text-xs font-medium border border-primary-500/20"
-                        >
-                          {service}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Before/After Results */}
-                  <div className="border-t border-dark-700/50 pt-4 mb-4">
-                    <h4 className="font-semibold text-white mb-3">Before & After:</h4>
-                    <div className="grid grid-cols-2 gap-3">
-                      <div className="bg-red-500/10 rounded-lg p-3 border border-red-500/20">
-                        <p className="text-xs font-semibold text-red-400 mb-1">Before</p>
-                        <p className="text-sm text-dark-300">{study.problem}</p>
-                      </div>
-                      <div className="bg-green-500/10 rounded-lg p-3 border border-green-500/20">
-                        <p className="text-xs font-semibold text-green-400 mb-1">After</p>
-                        <p className="text-sm text-dark-300">Significant growth in {study.results.views} views, {study.results.leads} leads, and {study.results.revenue} revenue</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Results */}
-                  <div className="border-t border-dark-700/50 pt-4">
-                    <h4 className="font-semibold text-white mb-4">Growth Metrics:</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-primary-500/8 rounded-lg p-3 border border-primary-500/15">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <Eye className="w-4 h-4 text-primary-500" />
-                          <span className="text-xs text-dark-400">Total Views</span>
-                        </div>
-                        <div className="text-xl font-bold text-primary-400">
-                          {study.results.views}
-                        </div>
-                      </div>
-                      <div className="bg-primary-500/8 rounded-lg p-3 border border-primary-500/15">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <Users className="w-4 h-4 text-primary-500" />
-                          <span className="text-xs text-dark-400">Leads Generated</span>
-                        </div>
-                        <div className="text-xl font-bold text-primary-400">
-                          {study.results.leads}
-                        </div>
-                      </div>
-                      <div className="bg-primary-500/8 rounded-lg p-3 border border-primary-500/15">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <TrendingUp className="w-4 h-4 text-primary-500" />
-                          <span className="text-xs text-dark-400">Conversion Rate</span>
-                        </div>
-                        <div className="text-xl font-bold text-primary-400">
-                          {study.results.conversions}
-                        </div>
-                      </div>
-                      <div className="bg-primary-500/8 rounded-lg p-3 border border-primary-500/15">
-                        <div className="flex items-center space-x-2 mb-1">
-                          <BarChart3 className="w-4 h-4 text-primary-500" />
-                          <span className="text-xs text-dark-400">Revenue Impact</span>
-                        </div>
-                        <div className="text-xl font-bold text-primary-400">
-                          {study.results.revenue}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="mt-4 p-3 bg-primary-500/8 rounded-lg border border-primary-500/15">
-                      <div className="flex items-center space-x-2">
-                        <Clock className="w-4 h-4 text-primary-500" />
-                        <span className="text-xs font-semibold text-primary-400">Project Duration: 3-6 months</span>
-                      </div>
-                    </div>
-                  </div>
+                {/* Subtitle Caption Overlay */}
+                <div className="absolute bottom-4 left-3 right-3 z-20 flex flex-col items-center justify-end h-[60%] text-center pointer-events-none">
+                  {item.caption === "Wo bhi aapke LOCATION PER" ? (
+                    <p className="text-white text-[10px] md:text-xs font-extrabold leading-tight tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center uppercase">
+                      Wo bhi aapke <br />
+                      <span className="text-[#38bdf8] font-black uppercase tracking-wider text-xs md:text-sm">LOCATION PER</span>
+                    </p>
+                  ) : item.caption === "Tourism growth" ? (
+                    <p className="text-[#facc15] font-black text-xs md:text-sm tracking-tight leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center uppercase">
+                      Tourism <br />
+                      <span className="text-white font-extrabold text-[10px] md:text-xs tracking-wide lowercase">growth</span>
+                    </p>
+                  ) : item.caption === "What Reduces" ? (
+                    <p className="text-white text-[10px] md:text-xs font-extrabold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center uppercase">
+                      What Reduces
+                    </p>
+                  ) : item.caption === "Relax / it's not" ? (
+                    <p className="text-white text-[10px] md:text-xs font-extrabold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center uppercase">
+                      Relax <br />
+                      <span className="text-[#C5FF2E] font-black text-[9px] md:text-[10px] tracking-wider">it's not</span>
+                    </p>
+                  ) : item.caption === "Nashik me Bahut / bada Development !" ? (
+                    <p className="text-white text-[10px] md:text-xs font-extrabold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center uppercase">
+                      Nashik me Bahut <br />
+                      <span className="text-[#facc15] font-black text-[9px] md:text-[10px] tracking-wider">bada Development !</span>
+                    </p>
+                  ) : (
+                    <p className="text-white text-[10px] md:text-xs font-bold tracking-wide drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] text-center uppercase">
+                      {item.caption}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
@@ -208,30 +279,23 @@ const Portfolio = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-br from-primary-700 via-primary-600 to-primary-800 text-dark-950">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-display mb-6 text-dark-950">
-            Ready to Be Our Next Success Story?
+      {/* Call to Action */}
+      <section className="py-20 bg-black text-white text-center relative overflow-hidden border-t border-neutral-900">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#C5FF2E]/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+          <span className="text-[#C5FF2E] text-xs font-black uppercase tracking-[0.25em] mb-3 block">
+            WORK WITH US
+          </span>
+          <h2 className="text-3xl md:text-5xl font-black font-display mb-6 tracking-tight text-white max-w-2xl leading-tight">
+            Your work could <br />live here.
           </h2>
-          <p className="text-xl text-dark-800 mb-8">
-            Let's discuss how we can help achieve similar results for your brand.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 scroll-reveal">
-            <Link
-              to="/contact"
-              className="cta-button px-8 py-4 bg-dark-950 text-primary-500 rounded-lg font-semibold text-lg hover:shadow-2xl flex items-center space-x-2"
-            >
-              <span>Get Free Consultation</span>
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-            <Link
-              to="/services"
-              className="cta-button px-8 py-4 bg-dark-950/20 border-2 border-dark-950/30 text-dark-950 rounded-lg font-semibold text-lg hover:bg-dark-950/30 transition-all"
-            >
-              View Services
-            </Link>
-          </div>
+          <a
+            href="https://growupmedia.in/#contact"
+            className="px-8 py-4 bg-[#C5FF2E] hover:bg-[#C5FF2E]/90 text-black rounded-full font-bold text-xs md:text-sm tracking-wider uppercase transition-all duration-300 flex items-center space-x-2 hover:scale-105 shadow-xl"
+          >
+            <span>Start the Conversation</span>
+            <ArrowRight className="w-4 h-4 text-black" />
+          </a>
         </div>
       </section>
     </div>

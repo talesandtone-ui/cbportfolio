@@ -7,19 +7,19 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Gold palette — matching logo's golden tones
+        // GrowUp Neon Green palette — matching growupmedia.in
         primary: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#D4A843',   // Main logo gold
-          600: '#C49A38',   // Slightly deeper gold
-          700: '#B8860B',   // Dark gold / amber
-          800: '#92680A',   // Deep amber
-          900: '#713F12',
-          950: '#422006',
+          50: '#f9ffe6',
+          100: '#f0ffcc',
+          200: '#e2ff99',
+          300: '#d4ff66',
+          400: '#c5ff2e',
+          500: '#C5FF2E',   // GrowUp Accent Neon Green
+          600: '#9ecf18',
+          700: '#7d9e0f',
+          800: '#5b7008',
+          900: '#3b4a04',
+          950: '#1c2401',
         },
         // Dark palette — matching logo's black background
         dark: {
@@ -41,7 +41,7 @@ export default {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Poppins', 'system-ui', 'sans-serif'],
+        display: ['Outfit', 'Poppins', 'system-ui', 'sans-serif'],
       },
     },
   },

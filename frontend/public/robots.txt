@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /portfolio
+Disallow: /case-study
+Disallow: /why-content
+Disallow: /privacy
+Disallow: /terms
+Disallow: /admin
+Disallow: /admin/
+Disallow: /admin/*
+
+Sitemap: https://buildlabs.in/sitemap.xml
