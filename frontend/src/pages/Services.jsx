@@ -3,6 +3,75 @@ import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { reinitAnimations } from '../utils/animations'
 import useSEO from '../hooks/useSEO'
+import { getCollection } from '../services/content'
+
+const defaultServices = [
+  {
+    num: '01',
+    title: 'SOCIAL MEDIA MARKETING',
+    description: "Your audience is on Instagram, LinkedIn, YouTube and TikTok right now. They're watching someone. It should be you.",
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/social media marketiing.mp4',
+    features: [
+      'CONTENT CALENDARS & STRATEGY',
+      'SCALABLE CONTENT SYSTEMS',
+      'COMMUNITY GROWTH',
+      'PLATFORM CAMPAIGNS'
+    ]
+  },
+  {
+    num: '02',
+    title: 'VIDEO PRODUCTION',
+    description: 'Cinematic, hook-focused short-form & long-form video. We craft visual stories that keep viewers hooked from the first second and build deep trust.',
+    image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/video productioon.mp4',
+    features: [
+      'SCRIPTWRITING & HOOK IDEATION',
+      'DIRECTING & SHOOTING GUIDANCE',
+      'CINEMATIC VIDEO EDITING',
+      'FORMAT OPTIMIZATION'
+    ]
+  },
+  {
+    num: '03',
+    title: 'BRANDING & DESIGN',
+    description: 'Memorable brand guidelines, high-conversion visual design. We establish a cohesive identity that sets you apart and converts visitors into loyal fans.',
+    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/brandingg.mp4',
+    features: [
+      'BRAND IDENTITY & COLOR SCHEMES',
+      'HIGH-CONVERSION THUMBNAILS',
+      'EXECUTIVE PITCH DECKS',
+      'LANDING PAGE WIREFRAMING'
+    ]
+  },
+  {
+    num: '04',
+    title: 'WEBSITE',
+    description: 'Custom digital products, speed optimization, and search rankings. We build clean, rapid-load websites optimized for maximum business conversions.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/website development.mp4',
+    features: [
+      'MOBILE-FIRST WEBSITE DEVELOPMENT',
+      'CRM & SCHEDULING AUTOMATIONS',
+      'LOCALIZED & TECHNICAL SEO',
+      'PERFORMANCE & LOADING OPTIMIZATION'
+    ]
+  },
+  {
+    num: '05',
+    title: 'SOFTWARE',
+    description: 'Custom enterprise software solutions, scalable databases, and automated workflows. We build robust systems that streamline operations and drive efficiency.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/software development.mp4',
+    features: [
+      'CUSTOM ENTERPRISE SOFTWARE',
+      'DATABASE ARCHITECTURE & DESIGN',
+      'API INTEGRATIONS & AUTOMATIONS',
+      'SCALABLE BACKEND SYSTEMS'
+    ]
+  }
+]
 
 const Services = () => {
   useSEO({
@@ -18,69 +87,19 @@ const Services = () => {
   }, [])
 
   const [hoveredIndex, setHoveredIndex] = useState(0)
+  const [servicesList, setServicesList] = useState([])
 
-  const servicesList = [
-    {
-      num: '01',
-      title: 'SOCIAL MEDIA MARKETING',
-      description: "Your audience is on Instagram, LinkedIn, YouTube and TikTok right now. They're watching someone. It should be you.",
-      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'CONTENT CALENDARS & STRATEGY',
-        'SCALABLE CONTENT SYSTEMS',
-        'COMMUNITY GROWTH',
-        'PLATFORM CAMPAIGNS'
-      ]
-    },
-    {
-      num: '02',
-      title: 'VIDEO PRODUCTION',
-      description: 'Cinematic, hook-focused short-form & long-form video. We craft visual stories that keep viewers hooked from the first second and build deep trust.',
-      image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'SCRIPTWRITING & HOOK IDEATION',
-        'DIRECTING & SHOOTING GUIDANCE',
-        'CINEMATIC VIDEO EDITING',
-        'FORMAT OPTIMIZATION'
-      ]
-    },
-    {
-      num: '03',
-      title: 'BRANDING & DESIGN',
-      description: 'Memorable brand guidelines, high-conversion visual design. We establish a cohesive identity that sets you apart and converts visitors into loyal fans.',
-      image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'BRAND IDENTITY & COLOR SCHEMES',
-        'HIGH-CONVERSION THUMBNAILS',
-        'EXECUTIVE PITCH DECKS',
-        'LANDING PAGE WIREFRAMING'
-      ]
-    },
-    {
-      num: '04',
-      title: 'WEBSITE',
-      description: 'Custom digital products, speed optimization, and search rankings. We build clean, rapid-load websites optimized for maximum business conversions.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'MOBILE-FIRST WEBSITE DEVELOPMENT',
-        'CRM & SCHEDULING AUTOMATIONS',
-        'LOCALIZED & TECHNICAL SEO',
-        'PERFORMANCE & LOADING OPTIMIZATION'
-      ]
-    },
-    {
-      num: '05',
-      title: 'SOFTWARE',
-      description: 'Custom enterprise software solutions, scalable databases, and automated workflows. We build robust systems that streamline operations and drive efficiency.',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'CUSTOM ENTERPRISE SOFTWARE',
-        'DATABASE ARCHITECTURE & DESIGN',
-        'API INTEGRATIONS & AUTOMATIONS',
-        'SCALABLE BACKEND SYSTEMS'
-      ]
+  useEffect(() => {
+    const fetchServices = async () => {
+      const dbServices = await getCollection('services', 'num', 'asc')
+      if (dbServices && dbServices.length > 0) {
+        setServicesList(dbServices)
+      } else {
+        setServicesList(defaultServices)
+      }
     }
-  ]
+    fetchServices()
+  }, [])
 
   return (
     <div className="bg-[#0b0b0b] text-white animate-fade-in">
@@ -121,16 +140,27 @@ const Services = () => {
                     </span>
 
                     {/* Image / Video Thumbnail column */}
-                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl transition-all duration-500 ease-out flex-shrink-0 ${
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl transition-all duration-500 ease-out flex-shrink-0 bg-neutral-900 ${
                       isHovered 
                         ? 'w-full md:w-[320px] lg:w-[380px] aspect-[4/3]' 
                         : 'w-24 md:w-36 h-14 md:h-20'
                     }`}>
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105"
-                      />
+                      {service.video ? (
+                        <video
+                          src={service.video}
+                          className="w-full h-full object-cover transition-transform duration-750 scale-105"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-black/10"></div>
                     </div>
 

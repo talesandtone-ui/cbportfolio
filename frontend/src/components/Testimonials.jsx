@@ -1,47 +1,63 @@
+import { useState, useEffect } from 'react'
 import { Quote } from 'lucide-react'
+import { getCollection } from '../services/content'
+
+const defaultTestimonials = [
+  {
+    name: 'SUMIT TIWARI',
+    role: 'Founder, Timus, Pune',
+    text: 'Buildlabs ne amchi brand ekdam next level la neli! Content baghitla ki trust lagar yeto. Solid team aahe.',
+    dotColor: '#ff7a00'
+  },
+  {
+    name: 'SUNAYA MADAN',
+    role: 'Chocoyum, Nagpur',
+    text: 'Creative touch khup chan hota. Aaplya brand la ek vegalich identity milali. Digital growth saathi best choice!',
+    dotColor: '#ff7a00'
+  },
+  {
+    name: 'PRIYA DESHPANDE',
+    role: 'Deshpande Foods, Pune',
+    text: 'Khup Chan kaam kela! Video content pahun customers khush zhale. Puneri business la ha team must aahe.',
+    dotColor: '#ff7a00'
+  },
+  {
+    name: 'RAHUL JAIN',
+    role: 'Grace Realty, Mumbai',
+    text: 'Professional team hai yaar, inke saath kaam karke maza aaya. Results bhi dikhaye aur brand value bhi badhi. Recommend karunga!',
+    dotColor: '#2b7fff'
+  },
+  {
+    name: 'ARJUN MEHTA',
+    role: 'ArcoBuild Infra, Delhi',
+    text: 'Bhai seedha baat karo, inki content strategy ne humari enquiries double kar di. Delhi mein bhi naam ho gaya!',
+    dotColor: '#2b7fff'
+  },
+  {
+    name: 'KARAN MALHOTRA',
+    role: 'FitZone Gym, Bangalore',
+    text: 'Yaar social media pe itna achha response pehle kabhi nahi mila. Buildlabs ka kaam dekh ke competitors bhi pooch rahe hain!',
+    dotColor: '#2b7fff'
+  }
+]
 
 const Testimonials = () => {
-  const row1 = [
-    {
-      name: 'SUMIT TIWARI',
-      role: 'Founder, Timus, Pune',
-      text: 'Buildlabs ne amchi brand ekdam next level la neli! Content baghitla ki trust lagar yeto. Solid team aahe.',
-      dotColor: '#ff7a00'
-    },
-    {
-      name: 'SUNAYA MADAN',
-      role: 'Chocoyum, Nagpur',
-      text: 'Creative touch khup chan hota. Aaplya brand la ek vegalich identity milali. Digital growth saathi best choice!',
-      dotColor: '#ff7a00'
-    },
-    {
-      name: 'PRIYA DESHPANDE',
-      role: 'Deshpande Foods, Pune',
-      text: 'Khup Chan kaam kela! Video content pahun customers khush zhale. Puneri business la ha team must aahe.',
-      dotColor: '#ff7a00'
-    }
-  ]
+  const [reviews, setReviews] = useState([])
 
-  const row2 = [
-    {
-      name: 'RAHUL JAIN',
-      role: 'Grace Realty, Mumbai',
-      text: 'Professional team hai yaar, inke saath kaam karke maza aaya. Results bhi dikhaye aur brand value bhi badhi. Recommend karunga!',
-      dotColor: '#2b7fff'
-    },
-    {
-      name: 'ARJUN MEHTA',
-      role: 'ArcoBuild Infra, Delhi',
-      text: 'Bhai seedha baat karo, inki content strategy ne humari enquiries double kar di. Delhi mein bhi naam ho gaya!',
-      dotColor: '#2b7fff'
-    },
-    {
-      name: 'KARAN MALHOTRA',
-      role: 'FitZone Gym, Bangalore',
-      text: 'Yaar social media pe itna achha response pehle kabhi nahi mila. Buildlabs ka kaam dekh ke competitors bhi pooch rahe hain!',
-      dotColor: '#2b7fff'
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const dbReviews = await getCollection('testimonials')
+      if (dbReviews && dbReviews.length > 0) {
+        setReviews(dbReviews)
+      } else {
+        setReviews(defaultTestimonials)
+      }
     }
-  ]
+    fetchReviews()
+  }, [])
+
+  const row1 = reviews.filter((_, idx) => idx % 2 === 0)
+  const row2 = reviews.filter((_, idx) => idx % 2 !== 0)
 
   // Create an even list of 6 items to ensure seamless alternating color repeating (White, Black, White, Black...)
   const marquee1Items = [...row1, ...row1] // 6 items

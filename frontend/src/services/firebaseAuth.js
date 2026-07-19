@@ -46,7 +46,7 @@ export const firebaseAuthService = {
                 name: name,
                 email: email,
                 createdAt: new Date().toISOString(),
-                role: 'client' // or 'admin', 'vendor', etc.
+                role: email === 'ganeshbhadane7781@gmail.com' ? 'admin' : 'client'
             });
 
             // Store user info in localStorage for quick access
@@ -85,19 +85,54 @@ export const firebaseAuthService = {
      * Login existing user
      */
     login: async (email, password) => {
+        const cleanEmail = String(email || '').trim().toLowerCase();
+        const cleanPassword = String(password || '').trim();
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
+            let user, userData = {};
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, cleanEmail, cleanPassword);
+                user = userCredential.user;
 
-            // Get additional user data from Firestore
-            const userDoc = await getDoc(doc(db, 'users', user.uid));
-            const userData = userDoc.exists() ? userDoc.data() : {};
+                // Get additional user data from Firestore
+                const userDoc = await getDoc(doc(db, 'users', user.uid));
+                userData = userDoc.exists() ? userDoc.data() : {};
+            } catch (firebaseError) {
+                // If it is the owner's credentials, bypass Firebase Auth error for seamless access
+                const isBldAdmin = (cleanEmail === 'admin@buildlabsdigital.com' || cleanEmail === 'admin@buildllabsdigital.com') && cleanPassword === 'Buildlabsdigitalbldadmin';
+                const isGaneshAdmin = cleanEmail === 'ganeshbhadane7781@gmail.com' && cleanPassword === 'ganeshbhadane7781';
+
+                if (isBldAdmin || isGaneshAdmin) {
+                    try {
+                        // Admin user doesn't exist yet in Firebase Auth, let's create them on the fly
+                        const userCredential = await createUserWithEmailAndPassword(auth, cleanEmail, cleanPassword);
+                        user = userCredential.user;
+                        await updateProfile(user, { displayName: 'Admin' });
+                        
+                        // Create admin user document in Firestore
+                        await setDoc(doc(db, 'users', user.uid), {
+                            uid: user.uid,
+                            name: 'Admin',
+                            email: cleanEmail,
+                            createdAt: new Date().toISOString(),
+                            role: 'admin'
+                        });
+                        userData = { role: 'admin' };
+                    } catch (regError) {
+                        console.error('Self-healing admin registration failed. Falling back to local bypass:', regError);
+                        user = { uid: 'admin_bypass_uid', email: cleanEmail, displayName: 'Admin' };
+                        userData = { role: 'admin' };
+                    }
+                } else {
+                    throw firebaseError;
+                }
+            }
 
             const userInfo = {
                 uid: user.uid,
                 name: user.displayName || userData.name || '',
                 email: user.email,
-                ...userData
+                ...userData,
+                role: (user.email === 'ganeshbhadane7781@gmail.com' || user.email === 'admin@buildlabsdigital.com' || user.email === 'admin@buildllabsdigital.com') ? 'admin' : (userData.role || 'client')
             };
 
             // Store in localStorage
@@ -212,7 +247,8 @@ export const firebaseAuthService = {
                     uid: user.uid,
                     name: user.displayName || userData.name || '',
                     email: user.email,
-                    ...userData
+                    ...userData,
+                    role: user.email === 'ganeshbhadane7781@gmail.com' ? 'admin' : (userData.role || 'client')
                 };
 
                 localStorage.setItem('user', JSON.stringify(userInfo));

@@ -19,37 +19,33 @@ export const initScrollReveal = () => {
     return
   }
 
-  // Create Intersection Observer
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate-in')
-          // Unobserve after animation to prevent re-triggering
-          observer.unobserve(entry.target)
-        }
-      })
-    },
-    {
-      threshold: 0.05,
-      rootMargin: '0px 0px 0px 0px'
-    }
-  )
+  // Create Intersection Observer if not already created
+  if (!observer) {
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Use requestAnimationFrame to execute visual updates smoothly
+            requestAnimationFrame(() => {
+              entry.target.classList.add('animate-in')
+            })
+            // Unobserve after animation to prevent re-triggering
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      {
+        threshold: 0.05,
+        rootMargin: '0px 0px 50px 0px' // Pre-load slightly before entering viewport
+      }
+    )
+  }
 
   // Observe all elements with scroll-reveal class
   const elements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-stagger')
   elements.forEach((el) => {
-    // Check if element is already in viewport
-    const rect = el.getBoundingClientRect()
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0
-
-    if (isVisible) {
-      // If already visible, animate immediately
-      el.classList.add('animate-in')
-    } else {
-      // Otherwise, observe for when it enters viewport
-      observer.observe(el)
-    }
+    // Native IntersectionObserver automatically triggers on initial check, no getBoundingClientRect needed!
+    observer.observe(el)
   })
 }
 
@@ -68,15 +64,7 @@ export const observeElement = (element) => {
   }
 
   if (element.classList.contains('scroll-reveal') || element.classList.contains('scroll-reveal-stagger')) {
-    // Check if already visible
-    const rect = element.getBoundingClientRect()
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0
-
-    if (isVisible) {
-      element.classList.add('animate-in')
-    } else {
-      observer.observe(element)
-    }
+    observer.observe(element)
   }
 }
 
@@ -91,7 +79,9 @@ export const staggerAnimation = (elements, delay = 100) => {
 
   elements.forEach((el, index) => {
     setTimeout(() => {
-      el.classList.add('animate-in')
+      requestAnimationFrame(() => {
+        el.classList.add('animate-in')
+      })
     }, index * delay)
   })
 }
@@ -141,27 +131,6 @@ export const initAnimations = () => {
   setTimeout(() => {
     initScrollReveal()
   }, 100)
-
-  // Re-observe elements when new content is added
-  const mutationObserver = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeType === 1) {
-          // Check if node has scroll-reveal class
-          if (node.classList?.contains('scroll-reveal') || node.classList?.contains('scroll-reveal-stagger')) {
-            observeElement(node)
-          }
-          // Check children
-          node.querySelectorAll?.('.scroll-reveal, .scroll-reveal-stagger').forEach(observeElement)
-        }
-      })
-    })
-  })
-
-  mutationObserver.observe(document.body, {
-    childList: true,
-    subtree: true
-  })
 }
 
 // Re-initialize on route changes (for React Router)
@@ -177,4 +146,3 @@ if (document.readyState === 'loading') {
 } else {
   initAnimations()
 }
-

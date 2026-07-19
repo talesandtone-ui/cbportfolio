@@ -3,9 +3,10 @@ import { collection, getDocs, doc, updateDoc, deleteDoc, query, orderBy } from '
 
 export const getLeads = async () => {
     try {
-        const q = query(collection(db, 'leads'), orderBy('createdAt', 'desc'));
-        const snapshot = await getDocs(q);
-        return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const snapshot = await getDocs(collection(db, 'leads'));
+        const allLeads = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        allLeads.sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0));
+        return allLeads;
     } catch (error) {
         console.error('Error fetching leads:', error);
         return [];

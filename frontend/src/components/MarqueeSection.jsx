@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { Play } from 'lucide-react'
+import { useState } from 'react'
+import { Play, XCircle, Volume2, VolumeX } from 'lucide-react'
 
 // Inline SVG Brand Logos for high performance and sharp rendering
 const UshaLogo = () => (
@@ -68,6 +68,8 @@ const KaariLogo = () => (
 )
 
 const MarqueeSection = () => {
+  const [selectedVideo, setSelectedVideo] = useState(null)
+  const [activeAudioId, setActiveAudioId] = useState(null)
   const logos = [
     <UshaLogo />,
     <VaamsiLogo />,
@@ -82,6 +84,7 @@ const MarqueeSection = () => {
     {
       id: 1,
       image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=400&auto=format&fit=crop',
+      video: '/videos/gyms edit.mp4',
       category: 'FITNESS & HEALTH',
       caption: 'you five things.',
       highlight: true
@@ -91,6 +94,7 @@ const MarqueeSection = () => {
       image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=400&auto=format&fit=crop',
       category: 'FASHION & LIFESTYLE',
       caption: '#TimusBuiltByFriends',
+      video: '/videos/056dff485242441776c90cd1ba524476.mp4',
       subtitle: 'Why...',
       highlight: false
     },
@@ -99,6 +103,7 @@ const MarqueeSection = () => {
       image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop',
       category: 'REAL ESTATE',
       caption: 'property kyun nahi',
+      video: '/videos/prpoerty.mp4',
       highlight: true
     },
     {
@@ -106,6 +111,7 @@ const MarqueeSection = () => {
       image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&auto=format&fit=crop',
       category: 'INTERIOR DESIGN',
       caption: "Don't Pick Tiles",
+      video: '/videos/property edits.mp4',
       subtitle: 'Because they Loved Them',
       highlight: false
     },
@@ -114,6 +120,7 @@ const MarqueeSection = () => {
       image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop',
       category: 'SPACES & DECOR',
       caption: 'Modern Studio Design',
+      video: '/videos/motion graphics.mp4',
       highlight: false
     },
     {
@@ -121,6 +128,7 @@ const MarqueeSection = () => {
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop',
       category: 'PRESENTATION & BRAND',
       caption: 'main hi sabko bata deti hoon',
+      video: '/videos/2aeb8ab2e973f0366ce0e03e1f153d1a_720w.mp4',
       highlight: true
     }
   ]
@@ -130,7 +138,8 @@ const MarqueeSection = () => {
   const duplicatedReels = [...reels, ...reels, ...reels]
 
   return (
-    <section className="bg-black py-4 overflow-hidden border-y border-neutral-900 flex flex-col space-y-4">
+    <>
+      <section className="bg-black py-4 overflow-hidden border-y border-neutral-900 flex flex-col space-y-4">
       {/* Row 1: Brand Logos Marquee (Left to Right) */}
       <div className="w-full overflow-hidden relative py-4 border-b border-neutral-900/60 bg-black">
         {/* Subtle left/right fading mask */}
@@ -152,19 +161,31 @@ const MarqueeSection = () => {
         <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
         <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
 
-        <div className="animate-marquee-rtl flex items-center space-x-6">
+          <div className="animate-marquee-rtl flex items-center space-x-6">
           {duplicatedReels.map((reel, index) => (
             <div
               key={`reel-${reel.id}-${index}`}
-              className="flex-shrink-0 w-40 md:w-48 aspect-[9/16] relative rounded-2xl overflow-hidden group shadow-2xl border border-neutral-800"
+              onClick={() => reel.video && setSelectedVideo(reel.video)}
+              className="flex-shrink-0 w-40 md:w-48 aspect-[9/16] relative rounded-2xl overflow-hidden group shadow-2xl border border-neutral-800 cursor-pointer bg-neutral-950"
             >
-              {/* Cover Image */}
-              <img
-                src={reel.image}
-                alt={reel.category}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
+              {/* Video or Image Cover */}
+              {reel.video ? (
+                <video
+                  src={reel.video}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  autoPlay
+                  loop
+                  muted={activeAudioId !== reel.id}
+                  playsInline
+                />
+              ) : (
+                <img
+                  src={reel.image}
+                  alt={reel.category}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              )}
 
               {/* Dark Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-transparent z-10"></div>
@@ -175,6 +196,19 @@ const MarqueeSection = () => {
                   {reel.category}
                 </span>
               </div>
+
+              {/* Sound Toggle (for videos) */}
+              {reel.video && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setActiveAudioId(activeAudioId === reel.id ? null : reel.id)
+                  }}
+                  className="absolute bottom-6 right-4 z-30 p-1.5 rounded-full bg-black/60 backdrop-blur-sm text-[#C5FF2E] border border-white/5 hover:scale-110 transition-transform cursor-pointer"
+                >
+                  {activeAudioId === reel.id ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+                </button>
+              )}
 
               {/* Play Button Overlay (appears on hover) */}
               <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -201,6 +235,35 @@ const MarqueeSection = () => {
         </div>
       </div>
     </section>
+      
+      {/* Lightbox Modal */}
+      {selectedVideo && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade-in"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white hover:scale-110 transition-all z-50 p-2 bg-white/10 rounded-full"
+            onClick={() => setSelectedVideo(null)}
+          >
+            <XCircle className="w-8 h-8" />
+          </button>
+          
+          <div 
+            className="relative w-full max-w-lg md:max-w-xl aspect-[9/16] rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl bg-black flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video 
+              src={selectedVideo} 
+              className="w-full h-full object-cover" 
+              autoPlay 
+              controls 
+              playsInline
+            />
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 

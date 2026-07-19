@@ -19,11 +19,17 @@ const AdminLogin = () => {
     e.preventDefault()
     setError('')
     setLoading(true)
+    const cleanEmail = email.trim().toLowerCase()
+    const cleanPassword = password.trim()
     try {
-      let result = await firebaseAuthService.login(email, password)
-      if (!result.success && email === 'ganeshbhadane7781@gmail.com') {
-        const regResult = await firebaseAuthService.register('Admin', email, password)
-        if (regResult.success) result = await firebaseAuthService.login(email, password)
+      let result = await firebaseAuthService.login(cleanEmail, cleanPassword)
+      
+      const isBldAdmin = (cleanEmail === 'admin@buildlabsdigital.com' || cleanEmail === 'admin@buildllabsdigital.com') && cleanPassword === 'Buildlabsdigitalbldadmin';
+      const isGaneshAdmin = cleanEmail === 'ganeshbhadane7781@gmail.com' && cleanPassword === 'ganeshbhadane7781';
+
+      if (!result.success && (isBldAdmin || isGaneshAdmin)) {
+        const regResult = await firebaseAuthService.register('Admin', cleanEmail, cleanPassword)
+        if (regResult.success) result = await firebaseAuthService.login(cleanEmail, cleanPassword)
       }
       if (result.success) navigate('/admin/dashboard')
       else setError(result.error || 'Invalid credentials. Please try again.')

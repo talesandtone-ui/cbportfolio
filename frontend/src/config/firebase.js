@@ -22,14 +22,18 @@ let app, analytics, auth, db, storage;
 try {
   // Initialize Firebase
   app = initializeApp(firebaseConfig);
-
-  // Initialize Firebase services
-  analytics = getAnalytics(app);
   auth = getAuth(app);
   db = getFirestore(app);
   storage = getStorage(app);
 } catch (error) {
   console.error("Firebase Initialization Error: Please make sure all VITE_FIREBASE_* environment variables are set. This is often the cause of a blank screen on Netlify deployments.", error);
+}
+
+try {
+  // Initialize Firebase analytics separately to prevent blocker/support crashes
+  analytics = getAnalytics(app);
+} catch (analyticsError) {
+  console.warn("Firebase Analytics not supported or failed to initialize in this environment:", analyticsError);
 }
 
 // Export services for use throughout the application

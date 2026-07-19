@@ -1,12 +1,124 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Play, TrendingUp, Video, Globe, Megaphone, Film, Palette, Award, CheckCircle } from 'lucide-react'
+import { ArrowRight, Play, TrendingUp, Video, Globe, Megaphone, Film, Palette, Award, CheckCircle, XCircle, Volume2, VolumeX } from 'lucide-react'
 
 import Testimonials from '../components/Testimonials'
 import MarqueeSection from '../components/MarqueeSection'
 import ProblemSection from '../components/ProblemSection'
 import { reinitAnimations } from '../utils/animations'
 import useSEO from '../hooks/useSEO'
+import { getCollection } from '../services/content'
+
+const defaultServices = [
+  {
+    num: '01',
+    title: 'SOCIAL MEDIA MARKETING',
+    description: "Your audience is on Instagram, LinkedIn, YouTube and TikTok right now. They're watching someone. It should be you.",
+    image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/social media marketiing.mp4',
+    features: [
+      'CONTENT CALENDARS & STRATEGY',
+      'SCALABLE CONTENT SYSTEMS',
+      'COMMUNITY GROWTH',
+      'PLATFORM CAMPAIGNS'
+    ]
+  },
+  {
+    num: '02',
+    title: 'WEBSITE',
+    description: 'Custom digital products, speed optimization, and search rankings. We build clean, rapid-load websites optimized for maximum business conversions.',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/website development.mp4',
+    features: [
+      'MOBILE-FIRST WEBSITE DEVELOPMENT',
+      'CRM & SCHEDULING AUTOMATIONS',
+      'LOCALIZED & TECHNICAL SEO',
+      'PERFORMANCE & LOADING OPTIMIZATION'
+    ]
+  },
+  {
+    num: '03',
+    title: 'BRANDING & DESIGN',
+    description: 'Memorable brand guidelines, high-conversion visual design. We establish a cohesive identity that sets you apart and converts visitors into loyal fans.',
+    image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/brandingg.mp4',
+    features: [
+      'BRAND IDENTITY & COLOR SCHEMES',
+      'HIGH-CONVERSION THUMBNAILS',
+      'EXECUTIVE PITCH DECKS',
+      'LANDING PAGE WIREFRAMING'
+    ]
+  },
+  {
+    num: '04',
+    title: 'SOFTWARE',
+    description: 'Custom enterprise software solutions, scalable databases, and automated workflows. We build robust systems that streamline operations and drive efficiency.',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/software development.mp4',
+    features: [
+      'CUSTOM ENTERPRISE SOFTWARE',
+      'DATABASE ARCHITECTURE & DESIGN',
+      'API INTEGRATIONS & AUTOMATIONS',
+      'SCALABLE BACKEND SYSTEMS'
+    ]
+  },
+  {
+    num: '05',
+    title: 'VIDEO PRODUCTION',
+    description: 'Cinematic, hook-focused short-form & long-form video. We craft visual stories that keep viewers hooked from the first second and build deep trust.',
+    image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/video productioon.mp4',
+    features: [
+      'SCRIPTWRITING & HOOK IDEATION',
+      'DIRECTING & SHOOTING GUIDANCE',
+      'CINEMATIC VIDEO EDITING',
+      'FORMAT OPTIMIZATION'
+    ]
+  }
+]
+
+const defaultPortfolioPreviews = [
+  {
+    id: 1,
+    brand: 'TIMUS LUGGAGE',
+    category: 'Social Media / Video',
+    metric: '1.5M+ Views',
+    image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/056dff485242441776c90cd1ba524476.mp4',
+    caption: 'HAVE YOU EVER WONDER',
+    desc: 'Rebuilt visual identity for travel luggage brand on social.'
+  },
+  {
+    id: 2,
+    brand: 'USHA INFOTECH',
+    category: 'B2B personal brand',
+    metric: '1.2M+ Impressions',
+    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/f08ad582b24cf050cee403954697769d_720w.mp4',
+    caption: 'Wo bhi aapke LOCATION PER',
+    desc: 'Executive authority content driving software engineering clients.'
+  },
+  {
+    id: 3,
+    brand: 'RAHUL JAIN',
+    category: 'Real Estate Authority',
+    metric: '800K+ Organic Reach',
+    image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/prpoerty.mp4',
+    caption: 'Tourism growth',
+    desc: 'Educational real estate hooks generating high-intent buyers.'
+  },
+  {
+    id: 4,
+    brand: 'EUNORA PHYSIOTHERAPY',
+    category: 'Local Healthcare',
+    metric: '400K+ Video Reach',
+    image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&auto=format&fit=crop',
+    video: '/videos/2aeb8ab2e973f0366ce0e03e1f153d1a_720w.mp4',
+    caption: 'What Reduces',
+    desc: 'Pain relief demonstration videos filling clinic bookings.'
+  }
+]
 
 const Home = () => {
   useSEO({
@@ -22,108 +134,35 @@ const Home = () => {
   }, [])
 
   const [hoveredIndex, setHoveredIndex] = useState(0)
+  const [selectedVideo, setSelectedVideo] = useState(null)
+  const [activeAudioId, setActiveAudioId] = useState(null)
+  const [services, setServices] = useState([])
+  const [portfolioPreviews, setPortfolioPreviews] = useState([])
 
-  const services = [
-    {
-      num: '01',
-      title: 'SOCIAL MEDIA MARKETING',
-      description: "Your audience is on Instagram, LinkedIn, YouTube and TikTok right now. They're watching someone. It should be you.",
-      image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'CONTENT CALENDARS & STRATEGY',
-        'SCALABLE CONTENT SYSTEMS',
-        'COMMUNITY GROWTH',
-        'PLATFORM CAMPAIGNS'
-      ]
-    },
-    {
-      num: '02',
-      title: 'WEBSITE',
-      description: 'Custom digital products, speed optimization, and search rankings. We build clean, rapid-load websites optimized for maximum business conversions.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'MOBILE-FIRST WEBSITE DEVELOPMENT',
-        'CRM & SCHEDULING AUTOMATIONS',
-        'LOCALIZED & TECHNICAL SEO',
-        'PERFORMANCE & LOADING OPTIMIZATION'
-      ]
-    },
-    {
-      num: '03',
-      title: 'BRANDING & DESIGN',
-      description: 'Memorable brand guidelines, high-conversion visual design. We establish a cohesive identity that sets you apart and converts visitors into loyal fans.',
-      image: 'https://images.unsplash.com/photo-1531403009284-440f080d1e12?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'BRAND IDENTITY & COLOR SCHEMES',
-        'HIGH-CONVERSION THUMBNAILS',
-        'EXECUTIVE PITCH DECKS',
-        'LANDING PAGE WIREFRAMING'
-      ]
-    },
-    {
-      num: '04',
-      title: 'SOFTWARE',
-      description: 'Custom enterprise software solutions, scalable databases, and automated workflows. We build robust systems that streamline operations and drive efficiency.',
-      image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'CUSTOM ENTERPRISE SOFTWARE',
-        'DATABASE ARCHITECTURE & DESIGN',
-        'API INTEGRATIONS & AUTOMATIONS',
-        'SCALABLE BACKEND SYSTEMS'
-      ]
-    },
-    {
-      num: '05',
-      title: 'VIDEO PRODUCTION',
-      description: 'Cinematic, hook-focused short-form & long-form video. We craft visual stories that keep viewers hooked from the first second and build deep trust.',
-      image: 'https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?q=80&w=600&auto=format&fit=crop',
-      features: [
-        'SCRIPTWRITING & HOOK IDEATION',
-        'DIRECTING & SHOOTING GUIDANCE',
-        'CINEMATIC VIDEO EDITING',
-        'FORMAT OPTIMIZATION'
-      ]
-    },
-  ]
+  useEffect(() => {
+    const loadData = async () => {
+      const dbServices = await getCollection('services', 'num', 'asc')
+      setServices(dbServices && dbServices.length > 0 ? dbServices : defaultServices)
 
-  const portfolioPreviews = [
-    {
-      id: 1,
-      brand: 'TIMUS LUGGAGE',
-      category: 'Social Media / Video',
-      metric: '1.5M+ Views',
-      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=600&auto=format&fit=crop',
-      caption: 'HAVE YOU EVER WONDER',
-      desc: 'Rebuilt visual identity for travel luggage brand on social.'
-    },
-    {
-      id: 2,
-      brand: 'USHA INFOTECH',
-      category: 'B2B personal brand',
-      metric: '1.2M+ Impressions',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop',
-      caption: 'Wo bhi aapke LOCATION PER',
-      desc: 'Executive authority content driving software engineering clients.'
-    },
-    {
-      id: 3,
-      brand: 'RAHUL JAIN',
-      category: 'Real Estate Authority',
-      metric: '800K+ Organic Reach',
-      image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=600&auto=format&fit=crop',
-      caption: 'Tourism growth',
-      desc: 'Educational real estate hooks generating high-intent buyers.'
-    },
-    {
-      id: 4,
-      brand: 'EUNORA PHYSIOTHERAPY',
-      category: 'Local Healthcare',
-      metric: '400K+ Video Reach',
-      image: 'https://images.unsplash.com/photo-1594824813573-246434de83fb?q=80&w=600&auto=format&fit=crop',
-      caption: 'What Reduces',
-      desc: 'Pain relief demonstration videos filling clinic bookings.'
+      const dbPortfolio = await getCollection('portfolio')
+      if (dbPortfolio && dbPortfolio.length > 0) {
+        const previews = dbPortfolio.slice(0, 4).map(item => ({
+          id: item.id || item._id,
+          brand: item.title,
+          category: item.category,
+          metric: item.metric,
+          image: item.image,
+          video: item.video,
+          caption: item.caption,
+          desc: item.metric
+        }))
+        setPortfolioPreviews(previews)
+      } else {
+        setPortfolioPreviews(defaultPortfolioPreviews)
+      }
     }
-  ]
+    loadData()
+  }, [])
 
   return (
     <div className="bg-[#0b0b0b] text-white">
@@ -207,16 +246,27 @@ const Home = () => {
                     </span>
 
                     {/* Image / Video Thumbnail column */}
-                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl transition-all duration-500 ease-out flex-shrink-0 ${
+                    <div className={`relative overflow-hidden rounded-2xl md:rounded-3xl transition-all duration-500 ease-out flex-shrink-0 bg-neutral-900 ${
                       isHovered 
                         ? 'w-full md:w-[320px] lg:w-[380px] aspect-[4/3]' 
                         : 'w-24 md:w-36 h-14 md:h-20'
                     }`}>
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105"
-                      />
+                      {service.video ? (
+                        <video
+                          src={service.video}
+                          className="w-full h-full object-cover transition-transform duration-750 scale-105"
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-black/10"></div>
                     </div>
 
@@ -298,18 +348,43 @@ const Home = () => {
             {portfolioPreviews.map((work) => (
               <div
                 key={work.id}
+                onClick={() => work.video && setSelectedVideo(work.video)}
                 className="scroll-reveal group aspect-[9/16] relative rounded-[2rem] overflow-hidden shadow-xl border border-neutral-100 hover:scale-[1.02] transition-all duration-500 cursor-pointer"
               >
-                {/* Cover Image */}
-                <img
-                  src={work.image}
-                  alt={work.brand}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
+                {/* Video or Image Cover */}
+                {work.video ? (
+                  <video
+                    src={work.video}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    autoPlay
+                    loop
+                    muted={activeAudioId !== work.id}
+                    playsInline
+                  />
+                ) : (
+                  <img
+                    src={work.image}
+                    alt={work.brand}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
 
                 {/* Dark Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent z-10"></div>
+
+                {/* Sound Toggle (for videos) */}
+                {work.video && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setActiveAudioId(activeAudioId === work.id ? null : work.id)
+                    }}
+                    className="absolute bottom-3 right-3 z-30 p-1.5 rounded-full bg-black/60 backdrop-blur-sm text-[#C5FF2E] border border-white/5 hover:scale-110 transition-transform cursor-pointer"
+                  >
+                    {activeAudioId === work.id ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+                  </button>
+                )}
 
                 {/* Metric/Views Badge */}
                 <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-20">
@@ -354,6 +429,34 @@ const Home = () => {
 
       {/* Testimonials */}
       <Testimonials />
+
+      {/* Lightbox Modal */}
+      {selectedVideo && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 animate-fade-in"
+          onClick={() => setSelectedVideo(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white hover:scale-110 transition-all z-50 p-2 bg-white/10 rounded-full"
+            onClick={() => setSelectedVideo(null)}
+          >
+            <XCircle className="w-8 h-8" />
+          </button>
+          
+          <div 
+            className="relative w-full max-w-lg md:max-w-xl aspect-[9/16] rounded-3xl overflow-hidden border border-neutral-800 shadow-2xl bg-black flex items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <video 
+              src={selectedVideo} 
+              className="w-full h-full object-cover" 
+              autoPlay 
+              controls 
+              playsInline
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
