@@ -16,7 +16,7 @@ import CaseStudies from './pages/CaseStudies'
 import WhyContent from './pages/WhyContent'
 import AdminLogin from './pages/AdminLogin'
 import AdminDashboard from './pages/AdminDashboard'
-// Login/Signup pages removed — only contact form is used
+import ChetanPortfolio from './pages/ChetanPortfolio'
 import { reinitAnimations } from './utils/animations'
 
 // Component to handle route changes
@@ -36,6 +36,11 @@ function App() {
     <Router>
       <RouteHandler>
         <Routes>
+          {/* Chetan Bharati Portfolio as primary landing page */}
+          <Route path="/" element={<ChetanPortfolio />} />
+          <Route path="/portfolio" element={<ChetanPortfolio />} />
+          <Route path="/chetan" element={<ChetanPortfolio />} />
+
           {/* Admin Routes (no navbar/footer) */}
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route
@@ -47,7 +52,7 @@ function App() {
             }
           />
 
-          {/* Public Routes */}
+          {/* Agency & Secondary Routes */}
           <Route
             path="/*"
             element={
@@ -55,9 +60,9 @@ function App() {
                 <Navbar />
                 <main className="flex-grow">
                   <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/agency" element={<Home />} />
                     <Route path="/services" element={<Services />} />
-                    <Route path="/portfolio" element={<Portfolio />} />
+                    <Route path="/agency-portfolio" element={<Portfolio />} />
                     <Route path="/case-study" element={<CaseStudies />} />
                     <Route path="/why-content" element={<WhyContent />} />
                     <Route path="/about" element={<About />} />
@@ -65,7 +70,6 @@ function App() {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/terms" element={<Terms />} />
                     <Route path="/privacy" element={<Privacy />} />
-
                   </Routes>
                 </main>
                 <Footer />

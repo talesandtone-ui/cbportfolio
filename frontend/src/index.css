@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-dark-950 text-dark-100;
+    @apply bg-white text-neutral-900;
     font-family: 'Inter', sans-serif;
   }
 
