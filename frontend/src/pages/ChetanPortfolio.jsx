@@ -3,123 +3,122 @@ import {
   Play,
   Volume2,
   VolumeX,
-  Maximize2,
   X,
   ArrowUpRight,
   Sparkles,
   Film,
-  Video,
-  Layers,
+  Zap,
   Wand2,
-  Award,
-  CheckCircle2,
   ArrowRight,
   ExternalLink,
-  ChevronRight,
-  Sliders,
-  Share2,
-  Zap
+  CheckCircle
 } from 'lucide-react'
 
-// Chetan's 7 signature video works in the exact requested sequence
+// 7 signature video works in exact requested sequence
 const PROJECTS = [
   {
     id: 'boisar',
     title: 'Boisar',
-    subtitle: 'Cinematic Travel',
+    subtitle: 'Cinematic Travel Reel',
     category: 'Reels',
-    type: 'cinematic',
     videoUrl: '/videos/chetan/boisar.mp4',
-    badge: 'Cinematic',
-    metric: 'Visual Reel'
+    badge: 'Cinematic Reel',
+    ratio: 'vertical'
   },
   {
     id: 'ai-add',
     title: 'AI ADD',
     subtitle: 'Fire Beast AI Commercial',
     category: 'Ads',
-    type: 'commercial',
     videoUrl: '/videos/chetan/ai-add.mp4',
-    badge: 'AI Ad',
-    metric: 'Brand Campaign'
+    badge: 'AI Commercial',
+    ratio: 'vertical'
   },
   {
     id: 'wong',
     title: 'Sze Wong',
-    subtitle: 'Lifestyle Commercial',
+    subtitle: 'Lifestyle Brand Commercial',
     category: 'Ads',
-    type: 'commercial',
     videoUrl: '/videos/chetan/wong.mp4',
-    badge: 'Commercial',
-    metric: 'Lifestyle Cut'
+    badge: 'Brand Ad',
+    ratio: 'vertical'
   },
   {
     id: 'botminda',
-    title: 'Botminda Project',
-    subtitle: 'Tech Product Motion',
+    title: 'Botminda',
+    subtitle: 'Tech Product Motion Ad',
     category: 'Ads',
-    type: 'commercial',
     videoUrl: '/videos/chetan/botminda.mp4',
-    badge: 'Product',
-    metric: 'Product Ad'
+    badge: 'Product Motion',
+    ratio: 'vertical'
   },
   {
     id: 'intro-making',
     title: 'Intro Making',
-    subtitle: 'Motion Graphics Reel',
+    subtitle: 'Motion Graphics Breakdown',
     category: 'Reels',
-    type: 'cinematic',
     videoUrl: '/videos/chetan/intro-making.mp4',
-    badge: 'Motion',
-    metric: 'Motion Reel'
+    badge: 'Motion Reel',
+    ratio: 'vertical'
   },
   {
     id: 'insights',
-    title: 'Insights Project',
-    subtitle: 'Brand Storytelling',
+    title: 'Insights',
+    subtitle: 'Finance & Analytics Commercial',
     category: 'Ads',
-    type: 'commercial',
     videoUrl: '/videos/chetan/insights.mp4',
-    badge: 'Brand Cut',
-    metric: 'Retention Cut'
+    badge: 'Commercial Ad',
+    ratio: 'vertical'
   },
   {
     id: 'wedding',
-    title: 'Wedding Film',
-    subtitle: 'Cinematic Wedding',
+    title: 'Wedding',
+    subtitle: 'Cinematic Love Story',
     category: 'Wedding',
-    type: 'wedding',
     videoUrl: '/videos/chetan/wedding.mov',
-    badge: 'Wedding',
-    metric: 'Cinematic Memory'
+    badge: 'Wedding Film',
+    ratio: 'vertical'
   }
 ]
 
 export default function ChetanPortfolio() {
   const [activeFilter, setActiveFilter] = useState('All')
-  const [activeAudioId, setActiveAudioId] = useState(null)
   const [modalVideo, setModalVideo] = useState(null)
+  const [activeAudioId, setActiveAudioId] = useState(null)
   const [isScrolled, setIsScrolled] = useState(false)
   const modalVideoRef = useRef(null)
 
+  // Track scroll for sticky navbar elevation
   useEffect(() => {
-    document.title = 'Chetan Bharati | Video Editor Portfolio'
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 30)
+      setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (modalVideo) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [modalVideo])
+
   const filterCategories = ['All', 'Ads', 'Reels', 'Wedding']
 
-  const filteredProjects = activeFilter === 'All'
-    ? PROJECTS
-    : PROJECTS.filter(item => item.category === activeFilter)
+  const filteredProjects =
+    activeFilter === 'All'
+      ? PROJECTS
+      : PROJECTS.filter((p) => p.category === activeFilter)
 
-  const openLightbox = (project) => {
+  const openLightbox = (item) => {
+    setModalVideo(item)
     setActiveAudioId(null)
-    setModalVideo(project)
   }
 
   const closeLightbox = () => {
@@ -127,144 +126,133 @@ export default function ChetanPortfolio() {
   }
 
   return (
-    <div className="min-h-screen bg-[#fafafa] text-neutral-900 font-sans selection:bg-black selection:text-white relative overflow-x-hidden">
+    <div className="min-h-screen bg-white text-neutral-900 font-sans antialiased relative selection:bg-neutral-900 selection:text-white">
       
-      {/* Visual Background Elements */}
-      {/* 1. Subtle Dot Grid Matrix */}
-      <div className="fixed inset-0 bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-70 pointer-events-none -z-20" />
+      {/* Subtle, clean top ambient glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-neutral-100/70 via-neutral-50/40 to-transparent pointer-events-none -z-10" />
 
-      {/* 2. Ambient Gradient Glows (Lime & Emerald Auras) */}
-      <div className="fixed -top-28 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-[#C5FF2E]/35 via-lime-200/25 to-transparent rounded-full blur-[100px] pointer-events-none -z-10" />
-      <div className="fixed top-1/3 -left-24 w-[420px] h-[420px] bg-emerald-200/30 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="fixed top-2/3 -right-24 w-[480px] h-[480px] bg-cyan-100/50 rounded-full blur-[130px] pointer-events-none -z-10" />
-      <div className="fixed -bottom-10 left-1/4 w-[500px] h-[400px] bg-lime-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
-
-      {/* 3. Subtle Film / Viewfinder Corner Markers */}
-      <div className="fixed top-24 left-6 w-4 h-4 border-t-2 border-l-2 border-neutral-300 pointer-events-none opacity-40 hidden lg:block -z-10" />
-      <div className="fixed top-24 right-6 w-4 h-4 border-t-2 border-r-2 border-neutral-300 pointer-events-none opacity-40 hidden lg:block -z-10" />
-      <div className="fixed bottom-10 left-6 w-4 h-4 border-b-2 border-l-2 border-neutral-300 pointer-events-none opacity-40 hidden lg:block -z-10" />
-      <div className="fixed bottom-10 right-6 w-4 h-4 border-b-2 border-r-2 border-neutral-300 pointer-events-none opacity-40 hidden lg:block -z-10" />
-
-      {/* Sticky Header / Navbar */}
+      {/* Sticky Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md border-b border-neutral-200/80 py-2.5 shadow-sm'
-            : 'bg-white/80 backdrop-blur-sm py-3'
+            ? 'bg-white/90 backdrop-blur-md border-b border-neutral-200/80 py-2.5 shadow-sm'
+            : 'bg-transparent py-3.5 sm:py-4'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-2">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Logo & Name (Compact single row) */}
-          <a href="#" className="flex items-center space-x-2.5 shrink-0 group">
-            <img
-              src="/chetan-logo.jpg"
-              alt="Chetan Bharati"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover border border-neutral-300 shadow-sm group-hover:scale-105 transition-all"
-            />
-            <div className="flex items-center space-x-1.5">
-              <span className="font-black text-xs sm:text-sm tracking-wider text-black uppercase whitespace-nowrap font-display">
-                CHETAN BHARATI
+          {/* Creator Brand / Logo */}
+          <a href="#" className="flex items-center space-x-2.5 group">
+            <div className="relative">
+              <img
+                src="/chetan-logo.jpg"
+                alt="Chetan Bharati"
+                className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-neutral-200 group-hover:scale-105 transition-transform"
+              />
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white" />
+            </div>
+            <div className="flex flex-col">
+              <span className="font-extrabold text-sm tracking-tight text-neutral-900 leading-none">
+                Chetan Bharati
               </span>
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+              <span className="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider mt-0.5">
+                Video Editor
+              </span>
             </div>
           </a>
 
-          {/* Nav Links (Desktop) */}
-          <nav className="hidden md:flex items-center space-x-6 text-[11px] font-bold uppercase tracking-widest text-neutral-600">
-            <a href="#work" className="hover:text-black transition-colors">
-              Works
-            </a>
-            <a href="#contact" className="hover:text-black transition-colors">
-              Connect
-            </a>
-          </nav>
-
-          {/* Social & CTA Header Buttons */}
-          <div className="flex items-center space-x-2 shrink-0">
+          {/* Social Icons & Contact CTA */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            {/* Instagram */}
             <a
               href="https://www.instagram.com/chetan_bharati30/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-neutral-700 hover:text-black flex items-center justify-center transition-all hover:scale-105"
-              title="Instagram"
+              className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-black flex items-center justify-center transition-colors"
+              title="Instagram Profile"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
             </a>
+
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/chetan-bharati-92b643350/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-200 text-neutral-700 hover:text-black flex items-center justify-center transition-all hover:scale-105"
-              title="LinkedIn"
+              className="w-8 h-8 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-700 hover:text-black flex items-center justify-center transition-colors"
+              title="LinkedIn Profile"
             >
               <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
               </svg>
             </a>
+
+            {/* Primary Action Button */}
             <a
               href="#contact"
-              className="px-3 sm:px-4 py-1.5 rounded-full bg-black text-white text-[11px] sm:text-xs font-extrabold uppercase tracking-wider hover:bg-neutral-800 transition-all hover:scale-105 shadow-sm whitespace-nowrap"
+              className="px-3.5 py-1.5 rounded-full bg-neutral-900 hover:bg-black text-white text-xs font-semibold tracking-wide transition-all shadow-sm"
             >
-              Let's Talk
+              Contact
             </a>
           </div>
 
         </div>
       </header>
 
-      {/* Hero Section (Compact & Sleek) */}
-      <section className="relative pt-20 pb-8 sm:pt-28 sm:pb-12 overflow-hidden bg-transparent">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+      {/* Hero Section */}
+      <section className="pt-24 sm:pt-32 pb-10 sm:pb-14">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
           
-          {/* Status Pill with REC indicator */}
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white/80 border border-neutral-200/90 mb-4 shadow-sm backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-[10px] sm:text-[11px] font-mono font-bold text-neutral-800 tracking-wider uppercase">
-              REC • Available for Projects
+          {/* Status Chip */}
+          <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-neutral-100/90 border border-neutral-200 mb-5">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[11px] font-semibold text-neutral-700 tracking-wide">
+              Available for New Projects
             </span>
           </div>
 
-          {/* Name */}
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-display tracking-tight text-neutral-950 uppercase leading-none mb-3">
-            CHETAN <span className="underline decoration-[#C5FF2E] decoration-4">BHARATI</span>
+          {/* Clean Main Heading */}
+          <h1 className="text-4xl sm:text-6xl font-black tracking-tight text-neutral-950 mb-3">
+            Chetan Bharati
           </h1>
 
-          {/* Title & One-line Punchline */}
-          <p className="text-sm sm:text-base md:text-lg font-bold text-neutral-700 max-w-xl mb-2 font-display">
-            Video Editor & Motion Creator
+          {/* Subtitle */}
+          <p className="text-base sm:text-xl font-medium text-neutral-600 mb-2">
+            Senior Video Editor & Motion Designer
           </p>
-          <p className="text-xs sm:text-sm text-neutral-500 max-w-lg mb-6 leading-relaxed">
+
+          {/* Tagline */}
+          <p className="text-xs sm:text-sm text-neutral-500 max-w-md mb-6 leading-relaxed">
             High-retention commercial ads, kinetic reels & cinematic visual storytelling.
           </p>
 
-          {/* Clean Minimalist Feature Chips with Vector Icons */}
-          <div className="flex flex-wrap items-center justify-center gap-2 max-w-xl mb-6 text-[10px] sm:text-[11px] font-semibold text-neutral-800">
-            <span className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center space-x-1.5">
-              <Film className="w-3.5 h-3.5 text-black" />
-              <span>7+ Featured Edits</span>
+          {/* Clean Vector Feature Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 max-w-lg mb-8 text-[11px] font-medium text-neutral-700">
+            <span className="px-3 py-1.5 rounded-full bg-neutral-50 border border-neutral-200/80 flex items-center space-x-1.5">
+              <Film className="w-3.5 h-3.5 text-neutral-900" />
+              <span>7 Featured Works</span>
             </span>
-            <span className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center space-x-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-black" />
+            <span className="px-3 py-1.5 rounded-full bg-neutral-50 border border-neutral-200/80 flex items-center space-x-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-neutral-900" />
               <span>4K Master Quality</span>
             </span>
-            <span className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center space-x-1.5">
-              <Zap className="w-3.5 h-3.5 text-black" />
+            <span className="px-3 py-1.5 rounded-full bg-neutral-50 border border-neutral-200/80 flex items-center space-x-1.5">
+              <Zap className="w-3.5 h-3.5 text-neutral-900" />
               <span>High-Retention</span>
             </span>
-            <span className="px-3 py-1.5 rounded-full bg-white border border-neutral-200 shadow-sm flex items-center space-x-1.5">
-              <Wand2 className="w-3.5 h-3.5 text-black" />
-              <span>AI & VFX</span>
+            <span className="px-3 py-1.5 rounded-full bg-neutral-50 border border-neutral-200/80 flex items-center space-x-1.5">
+              <Wand2 className="w-3.5 h-3.5 text-neutral-900" />
+              <span>AI & VFX Motion</span>
             </span>
           </div>
 
-          {/* Compact Action Buttons */}
+          {/* Hero CTAs */}
           <div className="flex items-center justify-center gap-3">
             <a
               href="#work"
-              className="px-5 sm:px-6 py-2.5 rounded-full bg-black text-white font-extrabold text-xs uppercase tracking-wider hover:bg-neutral-800 transition-all hover:scale-105 shadow-md flex items-center space-x-1.5"
+              className="px-5 sm:px-6 py-2.5 rounded-full bg-neutral-950 hover:bg-black text-white font-semibold text-xs tracking-wide transition-all shadow-sm flex items-center space-x-2"
             >
               <span>Explore Works</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -273,58 +261,55 @@ export default function ChetanPortfolio() {
               href="https://www.instagram.com/chetan_bharati30/"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 sm:px-5 py-2.5 rounded-full bg-neutral-100 hover:bg-neutral-200 text-neutral-900 font-extrabold text-xs uppercase tracking-wider border border-neutral-300 transition-all hover:scale-105 flex items-center space-x-1.5 shadow-sm"
+              className="px-5 py-2.5 rounded-full bg-white hover:bg-neutral-50 text-neutral-800 font-semibold text-xs tracking-wide border border-neutral-200 transition-all flex items-center space-x-1.5"
             >
               <span>Instagram</span>
-              <ExternalLink className="w-3 h-3 text-neutral-500" />
+              <ExternalLink className="w-3 h-3 text-neutral-400" />
             </a>
           </div>
 
         </div>
       </section>
 
-      {/* Video Portfolio Showcase Section */}
-      <section id="work" className="py-14 md:py-20 bg-white/60 backdrop-blur-sm border-t border-b border-neutral-200/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Video Portfolio Grid Section */}
+      <section id="work" className="py-10 sm:py-16 border-t border-neutral-100 bg-neutral-50/50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-5 border-b border-neutral-200 gap-4">
+          {/* Section Header & Filter Controls */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
             <div>
-              <div className="flex items-center space-x-2 mb-1.5">
-                <span className="w-4 h-1 bg-black rounded-full" />
-                <span className="text-[10px] sm:text-xs font-black text-neutral-800 uppercase tracking-widest">
-                  PORTFOLIO SHOWCASE
-                </span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-neutral-950 font-display tracking-tight uppercase leading-tight">
-                Featured Video Edits
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-950">
+                Selected Works
               </h2>
-              <p className="text-xs sm:text-sm text-neutral-500 mt-1">
-                Tap card to play full HD or toggle audio.
+              <p className="text-xs sm:text-sm text-neutral-500 mt-0.5">
+                Tap card to play full HD with audio
               </p>
             </div>
 
-            {/* Filter Pills (Clean Single Line, No Scrollbar) */}
-            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Single Line Filter Tabs (Clean, compact, no horizontal scroll) */}
+            <div className="flex items-center gap-1.5 self-start sm:self-auto bg-neutral-100/90 p-1 rounded-full border border-neutral-200/70">
               {filterCategories.map((cat) => {
-                const count = cat === 'All' 
-                  ? PROJECTS.length 
-                  : PROJECTS.filter(i => i.category === cat).length
+                const count =
+                  cat === 'All'
+                    ? PROJECTS.length
+                    : PROJECTS.filter((i) => i.category === cat).length
                 const isActive = activeFilter === cat
                 return (
                   <button
                     key={cat}
                     onClick={() => setActiveFilter(cat)}
-                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider transition-all border flex items-center space-x-1 whitespace-nowrap shrink-0 ${
+                    className={`px-3 py-1 rounded-full text-xs font-semibold transition-all flex items-center space-x-1 whitespace-nowrap ${
                       isActive
-                        ? 'bg-black text-white border-black shadow-sm'
-                        : 'bg-white text-neutral-600 border-neutral-300 hover:text-black hover:border-neutral-400 shadow-sm'
+                        ? 'bg-neutral-900 text-white shadow-sm'
+                        : 'text-neutral-600 hover:text-neutral-900'
                     }`}
                   >
                     <span>{cat}</span>
-                    <span className={`text-[8px] sm:text-[9px] px-1 py-0.2 rounded-md font-bold ${
-                      isActive ? 'bg-white/20 text-white' : 'bg-neutral-100 text-neutral-600'
-                    }`}>
+                    <span
+                      className={`text-[10px] px-1 rounded font-medium ${
+                        isActive ? 'bg-white/20 text-white' : 'text-neutral-400'
+                      }`}
+                    >
                       {count}
                     </span>
                   </button>
@@ -333,21 +318,21 @@ export default function ChetanPortfolio() {
             </div>
           </div>
 
-          {/* Video Grid (2 Columns on Mobile for native Reel look, 3-4 on Desktop) */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5 md:gap-6">
-            {filteredProjects.map((item, idx) => {
+          {/* Video Grid (2 Columns on Mobile, 3 on Tablet, 4 on Desktop) */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5">
+            {filteredProjects.map((item) => {
               const isAudioActive = activeAudioId === item.id
               return (
                 <div
                   key={item.id}
                   onClick={() => openLightbox(item)}
-                  className="group relative rounded-2xl overflow-hidden bg-white border border-neutral-200 hover:border-black/50 transition-all duration-500 shadow-md hover:shadow-2xl cursor-pointer hover:-translate-y-1.5 flex flex-col"
+                  className="group relative rounded-2xl overflow-hidden bg-neutral-900 border border-neutral-200/80 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer hover:-translate-y-1 flex flex-col"
                 >
-                  {/* Video Container (Vertical 9:16 format) */}
-                  <div className="relative aspect-[9/16] w-full overflow-hidden bg-black">
+                  {/* Vertical 9:16 Video Container */}
+                  <div className="relative aspect-[9/16] w-full overflow-hidden bg-neutral-950">
                     <video
                       src={item.videoUrl}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       autoPlay
                       loop
                       muted={!isAudioActive}
@@ -355,49 +340,50 @@ export default function ChetanPortfolio() {
                       preload="metadata"
                     />
 
-                    {/* Gradient Overlay for video text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/40 pointer-events-none" />
+                    {/* Subtle Gradient Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none" />
 
-                    {/* Single Clean Top Badge (1 Line) */}
-                    <div className="absolute top-2 left-2 sm:top-2.5 sm:left-2.5 z-20 pointer-events-none">
-                      <span className="px-2 sm:px-2.5 py-0.5 rounded-full bg-white/95 backdrop-blur-md text-neutral-950 text-[8px] sm:text-[9px] font-black tracking-wider uppercase shadow-sm whitespace-nowrap">
+                    {/* Top Clean Badge */}
+                    <div className="absolute top-2.5 left-2.5 z-20 pointer-events-none">
+                      <span className="px-2.5 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white text-[9px] font-medium tracking-wide">
                         {item.badge}
                       </span>
                     </div>
 
-                    {/* Play Hover Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
-                      <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white text-black shadow-2xl flex items-center justify-center scale-75 group-hover:scale-100 transition-transform duration-300">
-                        <Play className="w-4 h-4 sm:w-6 sm:h-6 fill-black ml-0.5 sm:ml-1" />
+                    {/* Play Indicator on Hover */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-none">
+                      <div className="w-11 h-11 rounded-full bg-white/95 text-neutral-900 shadow-lg flex items-center justify-center scale-90 group-hover:scale-100 transition-transform">
+                        <Play className="w-4 h-4 fill-current ml-0.5" />
                       </div>
                     </div>
 
-                    {/* Sound Control Button on Card */}
+                    {/* Audio Toggle Button */}
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation()
                         setActiveAudioId(isAudioActive ? null : item.id)
                       }}
-                      className="absolute bottom-2.5 right-2.5 sm:bottom-3 sm:right-3 z-30 p-1.5 sm:p-2 rounded-full bg-black/75 backdrop-blur-md text-white border border-white/20 hover:scale-110 hover:bg-black transition-transform cursor-pointer shadow-lg"
+                      className="absolute bottom-2.5 right-2.5 z-30 p-1.5 rounded-full bg-black/70 backdrop-blur-md text-white hover:bg-black transition-colors"
                       title={isAudioActive ? 'Mute audio' : 'Play audio'}
                     >
                       {isAudioActive ? (
-                        <Volume2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#C5FF2E]" />
+                        <Volume2 className="w-3.5 h-3.5 text-emerald-400" />
                       ) : (
-                        <VolumeX className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-neutral-300" />
+                        <VolumeX className="w-3.5 h-3.5 text-neutral-300" />
                       )}
                     </button>
 
-                    {/* Clean Bottom Title Overlay */}
-                    <div className="absolute bottom-2.5 left-2.5 right-9 sm:bottom-3 sm:left-3.5 sm:right-12 z-20 pointer-events-none">
-                      <h3 className="text-white font-extrabold text-xs sm:text-base leading-tight tracking-tight drop-shadow-md">
+                    {/* Bottom Title Info */}
+                    <div className="absolute bottom-2.5 left-2.5 right-10 z-20 pointer-events-none">
+                      <h3 className="text-white font-bold text-xs sm:text-sm leading-tight drop-shadow-sm truncate">
                         {item.title}
                       </h3>
-                      <p className="text-[9px] sm:text-[11px] text-white/80 font-medium tracking-wide drop-shadow-sm truncate">
-                        {item.category}
+                      <p className="text-[10px] text-neutral-300 font-medium truncate mt-0.5">
+                        {item.subtitle}
                       </p>
                     </div>
+
                   </div>
                 </div>
               )
@@ -407,104 +393,93 @@ export default function ChetanPortfolio() {
         </div>
       </section>
 
-      {/* Connect & Contact Section */}
-      <section id="contact" className="py-14 md:py-20 bg-white/60 backdrop-blur-sm border-t border-neutral-200/80">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* Connect & Collaboration Section */}
+      <section id="contact" className="py-14 sm:py-20 bg-white border-t border-neutral-100">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
           
-          <div className="p-8 sm:p-12 rounded-3xl bg-white border border-neutral-200 shadow-xl relative overflow-hidden">
+          <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest block mb-2">
+            Get in Touch
+          </span>
+
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-neutral-950 tracking-tight mb-3">
+            Let's build something cinematic
+          </h2>
+
+          <p className="text-xs sm:text-sm text-neutral-500 max-w-md mx-auto mb-8">
+            Available for commercials, high-retention social content, and cinematic video projects worldwide.
+          </p>
+
+          {/* Social Contact Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto mb-8">
             
-            <span className="text-black font-black text-xs uppercase tracking-[0.2em] mb-3 block">
-              LET'S CREATE TOGETHER
-            </span>
-
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-neutral-950 font-display uppercase tracking-tight mb-4 leading-tight">
-              Have a Project <br />Or Video in Mind?
-            </h2>
-
-            <p className="text-sm md:text-base text-neutral-600 max-w-xl mx-auto mb-8">
-              Whether it’s a high-impact commercial, viral social reels, wedding cinematic, or dynamic motion graphics, let's talk and bring your vision to life.
-            </p>
-
-            {/* Social Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-lg mx-auto mb-8">
-              
-              {/* LinkedIn */}
-              <a
-                href="https://www.linkedin.com/in/chetan-bharati-92b643350/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200 hover:border-[#0077b5] transition-all duration-300 flex items-center space-x-3 group hover:scale-[1.02] text-left shadow-sm"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#0077b5]/10 border border-[#0077b5]/20 flex items-center justify-center text-[#0077b5] group-hover:bg-[#0077b5] group-hover:text-white transition-colors">
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-neutral-900 text-sm font-bold flex items-center space-x-1">
-                    <span>LinkedIn</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#0077b5]" />
-                  </h4>
-                  <p className="text-xs text-neutral-500">chetan-bharati-92b643350</p>
-                </div>
-              </a>
-
-              {/* Instagram */}
-              <a
-                href="https://www.instagram.com/chetan_bharati30/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200 hover:border-[#E1306C] transition-all duration-300 flex items-center space-x-3 group hover:scale-[1.02] text-left shadow-sm"
-              >
-                <div className="w-12 h-12 rounded-xl bg-[#E1306C]/10 border border-[#E1306C]/20 flex items-center justify-center text-[#E1306C] group-hover:bg-[#E1306C] group-hover:text-white transition-colors">
-                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                  </svg>
-                </div>
-                <div>
-                  <h4 className="text-neutral-900 text-sm font-bold flex items-center space-x-1">
-                    <span>Instagram</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#E1306C]" />
-                  </h4>
-                  <p className="text-xs text-neutral-500">@chetan_bharati30</p>
-                </div>
-              </a>
-
-            </div>
-
-            {/* Direct Contact Button */}
+            {/* Instagram */}
             <a
               href="https://www.instagram.com/chetan_bharati30/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center space-x-2 px-8 py-4 rounded-full bg-black hover:bg-neutral-800 text-white font-black text-xs uppercase tracking-widest transition-all hover:scale-105 shadow-lg"
+              className="p-4 rounded-2xl bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200/80 transition-all flex items-center space-x-3.5 group text-left"
             >
-              <span>Direct Message on Instagram</span>
-              <ArrowRight className="w-4 h-4" />
+              <div className="w-10 h-10 rounded-xl bg-neutral-900 text-white flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center space-x-1">
+                  <span className="text-xs font-bold text-neutral-900">Instagram</span>
+                  <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover:text-neutral-900 transition-colors" />
+                </div>
+                <p className="text-[11px] text-neutral-500 truncate">@chetan_bharati30</p>
+              </div>
+            </a>
+
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/in/chetan-bharati-92b643350/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-2xl bg-neutral-50 hover:bg-neutral-100/80 border border-neutral-200/80 transition-all flex items-center space-x-3.5 group text-left"
+            >
+              <div className="w-10 h-10 rounded-xl bg-neutral-900 text-white flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center space-x-1">
+                  <span className="text-xs font-bold text-neutral-900">LinkedIn</span>
+                  <ArrowUpRight className="w-3 h-3 text-neutral-400 group-hover:text-neutral-900 transition-colors" />
+                </div>
+                <p className="text-[11px] text-neutral-500 truncate">chetan-bharati-92b643350</p>
+              </div>
             </a>
 
           </div>
 
+          {/* Primary Action Button */}
+          <a
+            href="https://www.instagram.com/chetan_bharati30/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 px-6 py-3 rounded-full bg-neutral-950 hover:bg-black text-white font-semibold text-xs tracking-wide transition-all shadow-md"
+          >
+            <span>Message on Instagram</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-8 bg-white border-t border-neutral-200 text-center text-xs text-neutral-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center space-x-2">
-            <span className="font-extrabold text-neutral-900">CHETAN BHARATI</span>
-            <span>•</span>
-            <span>Portfolio 2026</span>
-          </div>
-          <p className="text-neutral-500">
-            Crafted with passion for cinematic excellence.
-          </p>
-          <div className="flex items-center space-x-4">
+      {/* Clean Minimalist Footer */}
+      <footer className="py-6 bg-white border-t border-neutral-100 text-xs text-neutral-400">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p>© {new Date().getFullYear()} Chetan Bharati. All rights reserved.</p>
+          <div className="flex items-center space-x-4 text-neutral-600">
             <a
               href="https://www.instagram.com/chetan_bharati30/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-600 hover:text-black transition-colors font-medium"
+              className="hover:text-neutral-950 transition-colors"
             >
               Instagram
             </a>
@@ -512,7 +487,7 @@ export default function ChetanPortfolio() {
               href="https://www.linkedin.com/in/chetan-bharati-92b643350/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-600 hover:text-black transition-colors font-medium"
+              className="hover:text-neutral-950 transition-colors"
             >
               LinkedIn
             </a>
@@ -520,66 +495,69 @@ export default function ChetanPortfolio() {
         </div>
       </footer>
 
-      {/* Lightbox Video Modal (Clean White Theme) */}
+      {/* Lightbox Video Modal (Clean White Player Frame) */}
       {modalVideo && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4 sm:p-6 animate-fadeIn"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 sm:p-6"
           onClick={closeLightbox}
         >
           {/* Close button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-5 right-5 z-50 p-2.5 rounded-full bg-white text-black hover:bg-neutral-100 transition-all shadow-xl border border-neutral-200 hover:scale-105"
+            className="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 p-2 rounded-full bg-white text-neutral-900 hover:bg-neutral-100 transition-all shadow-lg border border-neutral-200"
             title="Close"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
 
-          {/* Modal Container */}
+          {/* Modal Card */}
           <div
-            className="relative w-full max-w-xl max-h-[90vh] bg-white rounded-3xl overflow-hidden border border-neutral-200 shadow-2xl flex flex-col"
+            className="relative w-full max-w-lg max-h-[88vh] bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-2xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header info */}
-            <div className="p-4 sm:p-5 flex items-center justify-between border-b border-neutral-200 bg-white">
+            {/* Modal Header */}
+            <div className="px-4 py-3 sm:px-5 sm:py-3.5 border-b border-neutral-100 flex items-center justify-between">
               <div>
-                <div className="flex items-center space-x-2 mb-1">
-                  <span className="text-[10px] font-black uppercase text-black bg-[#C5FF2E] px-2.5 py-0.5 rounded border border-neutral-300 shadow-sm">
-                    {modalVideo.badge}
-                  </span>
-                  <span className="text-xs text-neutral-500 font-semibold">
-                    {modalVideo.category}
-                  </span>
-                </div>
-                <h3 className="text-lg sm:text-xl font-black text-neutral-950 tracking-tight">
+                <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">
+                  {modalVideo.category} • {modalVideo.badge}
+                </span>
+                <h3 className="text-base sm:text-lg font-bold text-neutral-950 leading-tight">
                   {modalVideo.title}
                 </h3>
               </div>
+              <a
+                href="https://www.instagram.com/chetan_bharati30/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold text-neutral-900 hover:underline flex items-center space-x-1"
+              >
+                <span>Hire</span>
+                <ArrowUpRight className="w-3 h-3" />
+              </a>
             </div>
 
-            {/* Video Player Frame */}
-            <div className="relative bg-black flex items-center justify-center flex-grow max-h-[68vh] overflow-hidden">
+            {/* Video Player */}
+            <div className="relative bg-black flex items-center justify-center flex-grow max-h-[66vh] overflow-hidden">
               <video
                 ref={modalVideoRef}
                 src={modalVideo.videoUrl}
-                className="w-full h-full max-h-[68vh] object-contain"
+                className="w-full h-full max-h-[66vh] object-contain"
                 autoPlay
                 controls
                 playsInline
               />
             </div>
 
-            {/* Footer details */}
-            <div className="p-4 bg-white border-t border-neutral-200 text-xs text-neutral-600 flex items-center justify-between">
-              <span className="font-bold text-neutral-900 text-sm">{modalVideo.title}</span>
+            {/* Modal Footer */}
+            <div className="p-3.5 sm:p-4 bg-neutral-50 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-600">
+              <span className="truncate pr-2">{modalVideo.subtitle}</span>
               <a
                 href="https://www.instagram.com/chetan_bharati30/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 rounded-full bg-black hover:bg-neutral-800 text-white font-extrabold text-xs uppercase tracking-wider inline-flex items-center space-x-1.5 transition-all shadow-sm"
+                className="px-3.5 py-1.5 rounded-full bg-neutral-950 text-white font-semibold text-[11px] tracking-wide hover:bg-black transition-all shrink-0"
               >
-                <span>Connect on Instagram</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                DM on Instagram
               </a>
             </div>
 
