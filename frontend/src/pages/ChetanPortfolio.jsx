@@ -14,7 +14,7 @@ import {
   CheckCircle
 } from 'lucide-react'
 
-// 7 signature video works in exact requested sequence
+// 8 signature video works in exact requested sequence
 const PROJECTS = [
   {
     id: 'boisar',
@@ -50,6 +50,15 @@ const PROJECTS = [
     category: 'Ads',
     videoUrl: '/videos/chetan/botminda.mp4',
     badge: 'Product Motion',
+    ratio: 'vertical'
+  },
+  {
+    id: 'inogics',
+    title: 'Inogics',
+    subtitle: 'Dynamics 365 SaaS Motion Ad',
+    category: 'Ads',
+    videoUrl: '/videos/chetan/Inogics.mp4',
+    badge: 'SaaS Product Ad',
     ratio: 'vertical'
   },
   {
@@ -232,7 +241,7 @@ export default function ChetanPortfolio() {
           <div className="flex flex-wrap items-center justify-center gap-2 max-w-lg mb-8 text-[11px] font-medium text-neutral-700">
             <span className="px-3 py-1.5 rounded-full bg-neutral-50 border border-neutral-200/80 flex items-center space-x-1.5">
               <Film className="w-3.5 h-3.5 text-neutral-900" />
-              <span>7 Featured Works</span>
+              <span>8 Featured Works</span>
             </span>
             <span className="px-3 py-1.5 rounded-full bg-neutral-50 border border-neutral-200/80 flex items-center space-x-1.5">
               <Sparkles className="w-3.5 h-3.5 text-neutral-900" />

@@ -4,7 +4,7 @@ Chetan Bharati - Video Editor & Motion Creator Portfolio website.
 
 ## Showcase Features
 - Clean White Minimalist Studio Theme
-- 7 Signature Video Works (Reels, Commercial Ads, Wedding Cinematic)
+- 8 Signature Video Works (Reels, Commercial Ads, Wedding Cinematic)
 - Instant Sound Toggle & Full-Screen HD Lightbox Video Player
 - Direct Instagram & LinkedIn Connect
 
